@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bac01"
+    tools:context=".ui.activity.LoginActivity">
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout01"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="100px"
+        android:layout_marginTop="150dp"
+        android:layout_marginRight="100px"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <EditText
+            android:id="@+id/ed_phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:background="@null"
+            android:drawableLeft="@drawable/login_phone"
+            android:drawablePadding="10dp"
+            android:ellipsize="end"
+            android:hint="手机号"
+            android:singleLine="true"
+            android:textColor="#ffffff"
+            android:textColorHint="#ffffff"
+            android:textSize="20sp" />
+
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/view_01"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="10dp"
+        android:background="#ffffff"
+        app:layout_constraintLeft_toLeftOf="@id/relativeLayout01"
+        app:layout_constraintRight_toRightOf="@id/relativeLayout01"
+        app:layout_constraintTop_toBottomOf="@id/relativeLayout01" />
+
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout02"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="35dp"
+        app:layout_constraintLeft_toLeftOf="@id/relativeLayout01"
+        app:layout_constraintRight_toRightOf="@id/relativeLayout01"
+        app:layout_constraintTop_toBottomOf="@id/view_01">
+
+
+        <EditText
+            android:id="@+id/ed_pwd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_toLeftOf="@id/icon_eye"
+            android:background="@null"
+            android:drawableLeft="@drawable/login_lock"
+            android:drawablePadding="10dp"
+            android:ellipsize="end"
+            android:hint="登录密码"
+            android:inputType="textPassword"
+            android:singleLine="true"
+            android:textColor="#ffffff"
+            android:textColorHint="#ffffff"
+            android:textSize="20sp" />
+
+
+        <ImageButton
+            android:id="@+id/icon_eye"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:background="#ff5f71"
+            android:focusable="auto"
+            android:src="@drawable/login_eye" />
+
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/view_02"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="11dp"
+        android:background="#ffffff"
+        app:layout_constraintLeft_toLeftOf="@id/relativeLayout02"
+        app:layout_constraintRight_toRightOf="@id/relativeLayout02"
+        app:layout_constraintTop_toBottomOf="@id/relativeLayout02" />
+
+    <CheckBox
+        android:id="@+id/ch_remember"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="记住密码"
+        android:textColor="#ffffff"
+        android:theme="@style/MyCheckBox"
+        app:layout_constraintLeft_toLeftOf="@id/relativeLayout01"
+        app:layout_constraintTop_toBottomOf="@id/view_02" />
+
+
+    <TextView
+        android:id="@+id/tv_spReg"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="立即注册"
+        android:textColor="#ffffff"
+        app:layout_constraintRight_toRightOf="@id/relativeLayout01"
+        app:layout_constraintTop_toBottomOf="@id/view_02" />
+
+    <Button
+        android:id="@+id/btn_login"
+        android:layout_width="280dp"
+        android:layout_height="40dp"
+        android:layout_marginBottom="120dp"
+        android:background="@drawable/sele"
+        android:text="登录"
+        android:textColor="#ff5f71"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <Button
+        android:id="@+id/btn_tpLogin"
+        android:layout_width="280dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/sele"
+        android:text="QQ登录"
+        android:textColor="#ff5f71"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_login" />
+
+</android.support.constraint.ConstraintLayout>

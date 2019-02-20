@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    app:cardBackgroundColor="#ffffff"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="5dp">
+
+    <android.support.constraint.ConstraintLayout xmlns:fresco="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/iv_mlss_icon"
+            android:layout_width="105dp"
+            android:layout_height="135dp"
+            android:layout_margin="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            fresco:placeholderImage="@drawable/ic_launcher" />
+
+        <TextView
+            android:id="@+id/tv_mlss_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="10dp"
+            android:maxLines="3"
+            android:text="name"
+            android:textColor="#666666"
+            android:textSize="12sp"
+            app:layout_constraintLeft_toRightOf="@id/iv_mlss_icon"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/iv_mlss_icon" />
+
+        <TextView
+            android:id="@+id/tv_mlss_price"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="20dp"
+            android:maxLines="1"
+            android:text="￥"
+            android:textColor="#ff0000"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@id/iv_mlss_icon"
+            app:layout_constraintLeft_toRightOf="@id/iv_mlss_icon"
+            app:layout_constraintRight_toRightOf="parent" />
+
+    </android.support.constraint.ConstraintLayout>
+
+
+</android.support.v7.widget.CardView>
