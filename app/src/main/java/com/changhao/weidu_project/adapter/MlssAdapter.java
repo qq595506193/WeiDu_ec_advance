@@ -17,7 +17,7 @@ import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MlssAdapter extends XRecyclerView.Adapter<MlssAdapter.ViewHolder> {
+public class MlssAdapter extends RecyclerView.Adapter<MlssAdapter.ViewHolder> {
     private Context context;
     private List<HomeEntity.ResultBean.MlssBean.CommodityListBeanXX> commodityListBeanXXES;
 

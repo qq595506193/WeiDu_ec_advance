@@ -17,7 +17,7 @@ import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PzshAdapter extends XRecyclerView.Adapter<PzshAdapter.ViewHolder> {
+public class PzshAdapter extends RecyclerView.Adapter<PzshAdapter.ViewHolder> {
     private Context context;
     private List<HomeEntity.ResultBean.PzshBean.CommodityListBeanX> commodityListBeanXES;
 

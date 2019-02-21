@@ -15,17 +15,17 @@
         <TextView
             android:id="@+id/tv_pzsh_title"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="45dp"
             android:gravity="center"
+            android:background="@drawable/pzsh_bac_bitmap"
             android:padding="10dp"
-            android:text="品质生活+++"
             android:textColor="#ff7f57"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <com.jcodecraeer.xrecyclerview.XRecyclerView
-            android:id="@+id/pzsh_xrv"
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/pzsh_rv"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="24dp"

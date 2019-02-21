@@ -15,19 +15,20 @@
         <TextView
             android:id="@+id/tv_mlss_title"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="45dp"
             android:gravity="center"
             android:padding="10dp"
-            android:text="魔力时尚+++"
+            android:background="@drawable/mlss_bac_bitmap"
             android:textColor="#ff7f57"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <com.jcodecraeer.xrecyclerview.XRecyclerView
-            android:id="@+id/mlss_xrv"
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/mlss_rv"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_margin="24dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"

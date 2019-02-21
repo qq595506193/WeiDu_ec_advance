@@ -2,7 +2,9 @@ package com.changhao.weidu_project.adapter;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +13,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.changhao.weidu_project.R;
+import com.changhao.weidu_project.callback.IGetItemIdCallback;
 import com.changhao.weidu_project.entity.BannerEntity;
 import com.changhao.weidu_project.entity.HomeEntity;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
@@ -68,8 +71,8 @@ public class HomeAdapter extends XRecyclerView.Adapter<XRecyclerView.ViewHolder>
 
     private final int BANNER_ITEM = 0;
     private final int RXXP_ITEM = 1;
-    private final int PZSH_ITEM = 2;
-    private final int MLSS_ITEM = 3;
+    private final int PZSH_ITEM = 3;
+    private final int MLSS_ITEM = 2;
 
 
     @NonNull
@@ -100,60 +103,56 @@ public class HomeAdapter extends XRecyclerView.Adapter<XRecyclerView.ViewHolder>
     public void onBindViewHolder(@NonNull final XRecyclerView.ViewHolder viewHolder, final int i) {
         if (rxxpBeans.size() > 0 && pzshBeans.size() > 0 && mlssBeans.size() > 0) {
             if (getItemViewType(i) == RXXP_ITEM) {
-                HomeEntity.ResultBean.RxxpBean rxxpBean = rxxpBeans.get(0);
+                final HomeEntity.ResultBean.RxxpBean rxxpBean = rxxpBeans.get(0);
                 rxxpViewHolder.tv_rxxp_title.setText(rxxpBean.getName());
-                rxxpViewHolder.rxxp_xrv.setLayoutManager(new LinearLayoutManager(context));
+                rxxpViewHolder.rxxp_rv.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
                 RxxpAdapter rxxpAdapter = new RxxpAdapter(context);
-                rxxpViewHolder.rxxp_xrv.setAdapter(rxxpAdapter);
-                rxxpViewHolder.rxxp_xrv.setLoadingListener(new XRecyclerView.LoadingListener() {
-                    @Override
-                    public void onRefresh() {
-                        rxxpViewHolder.rxxp_xrv.refreshComplete();
-                    }
+                rxxpViewHolder.rxxp_rv.setAdapter(rxxpAdapter);
 
-                    @Override
-                    public void onLoadMore() {
-                        rxxpViewHolder.rxxp_xrv.loadMoreComplete();
-                    }
-                });
                 rxxpAdapter.setCommodityListBeans(rxxpBean.getCommodityList());
 
+                viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (iGetItemIdCallback != null) {
+                            iGetItemIdCallback.getItemId(rxxpBean.getCommodityList().get(i).getCommodityId());
+                        }
+                    }
+                });
             } else if (getItemViewType(i) == PZSH_ITEM) {
-                HomeEntity.ResultBean.PzshBean pzshBean = pzshBeans.get(0);
+                final HomeEntity.ResultBean.PzshBean pzshBean = pzshBeans.get(0);
                 pzshViewHolder.tv_pzsh_title.setText(pzshBean.getName());
-                pzshViewHolder.pzsh_xrv.setLayoutManager(new LinearLayoutManager(context));
+                pzshViewHolder.pzsh_rv.setLayoutManager(new GridLayoutManager(context, 2));
                 PzshAdapter pzshAdapter = new PzshAdapter(context);
-                pzshViewHolder.pzsh_xrv.setAdapter(pzshAdapter);
-                pzshViewHolder.pzsh_xrv.setLoadingListener(new XRecyclerView.LoadingListener() {
-                    @Override
-                    public void onRefresh() {
-                        pzshViewHolder.pzsh_xrv.refreshComplete();
-                    }
+                pzshViewHolder.pzsh_rv.setAdapter(pzshAdapter);
 
-                    @Override
-                    public void onLoadMore() {
-                        pzshViewHolder.pzsh_xrv.loadMoreComplete();
-                    }
-                });
                 pzshAdapter.setCommodityListBeanXES(pzshBean.getCommodityList());
-            } else if (getItemViewType(i) == MLSS_ITEM) {
-                HomeEntity.ResultBean.MlssBean mlssBean = mlssBeans.get(0);
-                mlssViewHolder.tv_mlss_title.setText(mlssBean.getName());
-                mlssViewHolder.mlss_xrv.setLayoutManager(new LinearLayoutManager(context));
-                MlssAdapter mlssAdapter = new MlssAdapter(context);
-                mlssViewHolder.mlss_xrv.setAdapter(mlssAdapter);
-                mlssViewHolder.mlss_xrv.setLoadingListener(new XRecyclerView.LoadingListener() {
-                    @Override
-                    public void onRefresh() {
-                        mlssViewHolder.mlss_xrv.refreshComplete();
-                    }
 
+                viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public void onLoadMore() {
-                        mlssViewHolder.mlss_xrv.loadMoreComplete();
+                    public void onClick(View v) {
+                        if (iGetItemIdCallback != null) {
+                            iGetItemIdCallback.getItemId(pzshBean.getCommodityList().get(i).getCommodityId());
+                        }
                     }
                 });
+            } else if (getItemViewType(i) == MLSS_ITEM) {
+                final HomeEntity.ResultBean.MlssBean mlssBean = mlssBeans.get(0);
+                mlssViewHolder.tv_mlss_title.setText(mlssBean.getName());
+                mlssViewHolder.mlss_rv.setLayoutManager(new LinearLayoutManager(context));
+                MlssAdapter mlssAdapter = new MlssAdapter(context);
+                mlssViewHolder.mlss_rv.setAdapter(mlssAdapter);
+
                 mlssAdapter.setCommodityListBeanXXES(mlssBean.getCommodityList());
+
+                viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (iGetItemIdCallback != null) {
+                            iGetItemIdCallback.getItemId(mlssBean.getCommodityList().get(i).getCommodityId());
+                        }
+                    }
+                });
             } else if (getItemViewType(i) == BANNER_ITEM) {
                 final List<BannerEntity.ResultBean> result = bannerEntity.getResult();
                 bannerViewHolder.xBanner.setData(result, null);
@@ -165,7 +164,15 @@ public class HomeAdapter extends XRecyclerView.Adapter<XRecyclerView.ViewHolder>
                     }
                 });
             }
+
+
         }
+    }
+
+    public IGetItemIdCallback iGetItemIdCallback;
+
+    public void setiGetItemIdCallback(IGetItemIdCallback iGetItemIdCallback) {
+        this.iGetItemIdCallback = iGetItemIdCallback;
     }
 
     @Override
@@ -200,36 +207,36 @@ public class HomeAdapter extends XRecyclerView.Adapter<XRecyclerView.ViewHolder>
     class RxxpViewHolder extends XRecyclerView.ViewHolder {
 
         private final TextView tv_rxxp_title;
-        private final XRecyclerView rxxp_xrv;
+        private final RecyclerView rxxp_rv;
 
         public RxxpViewHolder(@NonNull View itemView) {
             super(itemView);
             tv_rxxp_title = itemView.findViewById(R.id.tv_rxxp_title);
-            rxxp_xrv = itemView.findViewById(R.id.rxxp_xrv);
+            rxxp_rv = itemView.findViewById(R.id.rxxp_rv);
         }
     }
 
     class PzshViewHolder extends XRecyclerView.ViewHolder {
 
         private final TextView tv_pzsh_title;
-        private final XRecyclerView pzsh_xrv;
+        private final RecyclerView pzsh_rv;
 
         public PzshViewHolder(@NonNull View itemView) {
             super(itemView);
             tv_pzsh_title = itemView.findViewById(R.id.tv_pzsh_title);
-            pzsh_xrv = itemView.findViewById(R.id.pzsh_xrv);
+            pzsh_rv = itemView.findViewById(R.id.pzsh_rv);
         }
     }
 
     class MlssViewHolder extends XRecyclerView.ViewHolder {
 
         private final TextView tv_mlss_title;
-        private final XRecyclerView mlss_xrv;
+        private final RecyclerView mlss_rv;
 
         public MlssViewHolder(@NonNull View itemView) {
             super(itemView);
             tv_mlss_title = itemView.findViewById(R.id.tv_mlss_title);
-            mlss_xrv = itemView.findViewById(R.id.mlss_xrv);
+            mlss_rv = itemView.findViewById(R.id.mlss_rv);
         }
     }
 }

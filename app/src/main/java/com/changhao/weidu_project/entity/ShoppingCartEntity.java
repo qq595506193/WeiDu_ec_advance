@@ -2,7 +2,7 @@ package com.changhao.weidu_project.entity;
 
 import java.util.List;
 
-public class ShoppingEntity {
+public class ShoppingCartEntity {
     public String code;
     public String msg;
     public List<Cart> data;

@@ -15,22 +15,21 @@
         <TextView
             android:id="@+id/tv_rxxp_title"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="45dp"
+            android:background="@drawable/rxxp_bac_bitmap"
             android:gravity="center"
             android:padding="10dp"
-            android:text="热销新品+++"
             android:textColor="#ff7f57"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <com.jcodecraeer.xrecyclerview.XRecyclerView
-            android:id="@+id/rxxp_xrv"
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rxxp_rv"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="24dp"
-            android:layout_marginRight="24dp"
-            android:layout_marginBottom="24dp"
+            android:layout_margin="5dp"
+            android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"

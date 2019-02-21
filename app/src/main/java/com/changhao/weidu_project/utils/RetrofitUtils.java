@@ -2,7 +2,7 @@ package com.changhao.weidu_project.utils;
 
 import com.changhao.weidu_project.apis.Api;
 import com.changhao.weidu_project.callback.IOkHttpCallback;
-import com.changhao.weidu_project.contract.IRetrofitService;
+import com.changhao.weidu_project.callback.IRetrofitService;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -54,7 +54,7 @@ public class RetrofitUtils {
 
     public void doGet(String apiUrl, HashMap<String, String> parmas, final IOkHttpCallback iOkHttpCallback) {
         IRetrofitService retrofitService = retrofit.create(IRetrofitService.class);
-        retrofitService.getReg(apiUrl).enqueue(new Callback<ResponseBody>() {
+        retrofitService.getReg(apiUrl, parmas).enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 try {

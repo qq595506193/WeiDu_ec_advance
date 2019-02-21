@@ -23,8 +23,7 @@ import butterknife.ButterKnife;
 
 public class HomeFragment extends BaseFragment implements IHomeContract.IHomeView, IBannerContract.IBannerView {
 
-    @BindView(R.id.xBanner)
-    XBanner xBanner;
+
     @BindView(R.id.xrv_home)
     XRecyclerView xrv_home;
     private HomePresenter homePresenter;
@@ -48,6 +47,7 @@ public class HomeFragment extends BaseFragment implements IHomeContract.IHomeVie
     @Override
     protected void initView(View view) {
         ButterKnife.bind(this, view);
+
         homePresenter = new HomePresenter(this);
         bannerPresenter = new BannerPresenter(this);
         xrv_home.setLayoutManager(new LinearLayoutManager(getActivity()));
