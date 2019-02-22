@@ -16,7 +16,7 @@ public interface IProductDetailsContract {
     }
 
     interface IProductDetailsView {
-        void onSuccess(List<ProductDetailsEntity.ResultBean> productResultBeans);
+        void onSuccess(ProductDetailsEntity.ResultBean productResultBeans);
 
         void onFailed(String msg);
     }

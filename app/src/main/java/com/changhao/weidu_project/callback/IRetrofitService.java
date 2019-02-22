@@ -2,6 +2,7 @@ package com.changhao.weidu_project.callback;
 
 import java.util.HashMap;
 
+import io.reactivex.Observable;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -12,9 +13,9 @@ import retrofit2.http.Url;
 public interface IRetrofitService {
 
     @GET
-    Call<ResponseBody> getReg(@Url String apiUrl, @QueryMap HashMap<String, String> params);
+    Observable<ResponseBody> getReg(@Url String apiUrl, @QueryMap HashMap<String, String> params);
 
     @POST
-    Call<ResponseBody> postReg(@Url String apiUrl, @QueryMap HashMap<String, String> params);
+    Observable<ResponseBody> postReg(@Url String apiUrl, @QueryMap HashMap<String, String> params);
 
 }
