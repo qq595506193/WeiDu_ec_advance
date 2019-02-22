@@ -111,14 +111,6 @@ public class HomeAdapter extends XRecyclerView.Adapter<XRecyclerView.ViewHolder>
 
                 rxxpAdapter.setCommodityListBeans(rxxpBean.getCommodityList());
 
-                viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        if (iGetItemIdCallback != null) {
-                            iGetItemIdCallback.getItemId(rxxpBean.getCommodityList().get(i).getCommodityId());
-                        }
-                    }
-                });
             } else if (getItemViewType(i) == PZSH_ITEM) {
                 final HomeEntity.ResultBean.PzshBean pzshBean = pzshBeans.get(0);
                 pzshViewHolder.tv_pzsh_title.setText(pzshBean.getName());

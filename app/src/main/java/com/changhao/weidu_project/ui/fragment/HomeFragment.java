@@ -1,5 +1,6 @@
 package com.changhao.weidu_project.ui.fragment;
 
+import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 
@@ -11,9 +12,12 @@ import com.changhao.weidu_project.entity.BannerEntity;
 import com.changhao.weidu_project.entity.HomeEntity;
 import com.changhao.weidu_project.presenter.BannerPresenter;
 import com.changhao.weidu_project.presenter.HomePresenter;
+import com.changhao.weidu_project.ui.activity.ProductDetailsActivity;
 import com.changhao.weidu_project.ui.base.BaseFragment;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
-import com.stx.xhb.xbanner.XBanner;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 
 import java.util.HashMap;
 import java.util.List;
@@ -47,7 +51,7 @@ public class HomeFragment extends BaseFragment implements IHomeContract.IHomeVie
     @Override
     protected void initView(View view) {
         ButterKnife.bind(this, view);
-
+        EventBus.getDefault().register(this);
         homePresenter = new HomePresenter(this);
         bannerPresenter = new BannerPresenter(this);
         xrv_home.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -66,6 +70,13 @@ public class HomeFragment extends BaseFragment implements IHomeContract.IHomeVie
             }
         });
 
+    }
+
+    @Subscribe
+    public void itemClick(String itemId) {
+        Intent intent = new Intent(getActivity(), ProductDetailsActivity.class);
+        intent.putExtra("itemId", itemId);
+        startActivity(intent);
     }
 
     @Override

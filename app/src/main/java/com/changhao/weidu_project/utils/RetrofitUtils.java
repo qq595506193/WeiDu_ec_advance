@@ -5,6 +5,7 @@ import android.annotation.SuppressLint;
 import com.changhao.weidu_project.apis.Api;
 import com.changhao.weidu_project.callback.IOkHttpCallback;
 import com.changhao.weidu_project.callback.IRetrofitService;
+import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
 import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
@@ -38,6 +39,7 @@ public class RetrofitUtils {
                 .addConverterFactory(GsonConverterFactory.create())
                 .baseUrl(Api.BASE_URL)
                 .client(okHttpClient)
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build();
     }
 

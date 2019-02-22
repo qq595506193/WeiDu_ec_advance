@@ -12,7 +12,8 @@ import android.widget.TextView;
 import com.changhao.weidu_project.R;
 import com.changhao.weidu_project.entity.HomeEntity;
 import com.facebook.drawee.view.SimpleDraweeView;
-import com.jcodecraeer.xrecyclerview.XRecyclerView;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,11 +44,17 @@ public class MlssAdapter extends RecyclerView.Adapter<MlssAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull MlssAdapter.ViewHolder viewHolder, int i) {
-        HomeEntity.ResultBean.MlssBean.CommodityListBeanXX commodityListBeanXX = commodityListBeanXXES.get(i);
+        final HomeEntity.ResultBean.MlssBean.CommodityListBeanXX commodityListBeanXX = commodityListBeanXXES.get(i);
         Uri uri = Uri.parse(commodityListBeanXX.getMasterPic());
         viewHolder.iv_mlss_icon.setImageURI(uri);
         viewHolder.tv_mlss_name.setText(commodityListBeanXX.getCommodityName());
         viewHolder.tv_mlss_price.setText(commodityListBeanXX.getPrice());
+        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                EventBus.getDefault().post(commodityListBeanXX.getCommodityId());
+            }
+        });
     }
 
     @Override

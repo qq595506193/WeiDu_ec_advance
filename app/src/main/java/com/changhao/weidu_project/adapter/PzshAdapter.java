@@ -12,7 +12,8 @@ import android.widget.TextView;
 import com.changhao.weidu_project.R;
 import com.changhao.weidu_project.entity.HomeEntity;
 import com.facebook.drawee.view.SimpleDraweeView;
-import com.jcodecraeer.xrecyclerview.XRecyclerView;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,11 +44,17 @@ public class PzshAdapter extends RecyclerView.Adapter<PzshAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull PzshAdapter.ViewHolder viewHolder, int i) {
-        HomeEntity.ResultBean.PzshBean.CommodityListBeanX commodityListBeanX = commodityListBeanXES.get(i);
+        final HomeEntity.ResultBean.PzshBean.CommodityListBeanX commodityListBeanX = commodityListBeanXES.get(i);
         Uri uri = Uri.parse(commodityListBeanX.getMasterPic());
         viewHolder.iv_pzsh_icon.setImageURI(uri);
         viewHolder.tv_pzsh_name.setText(commodityListBeanX.getCommodityName());
         viewHolder.tv_pzsh_price.setText(commodityListBeanX.getPrice());
+        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                EventBus.getDefault().post(commodityListBeanX.getCommodityId());
+            }
+        });
     }
 
     @Override

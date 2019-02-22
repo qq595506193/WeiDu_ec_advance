@@ -12,7 +12,8 @@ import android.widget.TextView;
 import com.changhao.weidu_project.R;
 import com.changhao.weidu_project.entity.HomeEntity;
 import com.facebook.drawee.view.SimpleDraweeView;
-import com.jcodecraeer.xrecyclerview.XRecyclerView;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,11 +44,17 @@ public class RxxpAdapter extends RecyclerView.Adapter<RxxpAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull RxxpAdapter.ViewHolder viewHolder, int i) {
-        HomeEntity.ResultBean.RxxpBean.CommodityListBean commodityListBean = commodityListBeans.get(i);
+        final HomeEntity.ResultBean.RxxpBean.CommodityListBean commodityListBean = commodityListBeans.get(i);
         Uri uri = Uri.parse(commodityListBean.getMasterPic());
         viewHolder.iv_rxxp_icon.setImageURI(uri);
         viewHolder.tv_rxxp_name.setText(commodityListBean.getCommodityName());
         viewHolder.tv_rxxp_price.setText(commodityListBean.getPrice());
+        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                EventBus.getDefault().post(commodityListBean.getCommodityId());
+            }
+        });
     }
 
     @Override
