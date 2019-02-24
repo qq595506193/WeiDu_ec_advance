@@ -94,7 +94,7 @@ public class ProductDetailsEntity {
         private String describe;
         private String details;
         private String picture;
-        private int price;
+        private double price;
         private int saleNum;
         private int stock;
         private int weight;
@@ -163,11 +163,11 @@ public class ProductDetailsEntity {
             this.picture = picture;
         }
 
-        public int getPrice() {
+        public double getPrice() {
             return price;
         }
 
-        public void setPrice(int price) {
+        public void setPrice(double price) {
             this.price = price;
         }
 

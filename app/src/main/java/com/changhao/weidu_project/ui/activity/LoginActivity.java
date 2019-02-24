@@ -17,6 +17,7 @@ import com.changhao.weidu_project.entity.LoginEntity;
 import com.changhao.weidu_project.presenter.LoginPresenter;
 import com.changhao.weidu_project.ui.base.BaseActivity;
 import com.changhao.weidu_project.utils.RegularUtils;
+import com.changhao.weidu_project.utils.RetrofitUtils;
 
 import java.util.HashMap;
 
@@ -45,9 +46,12 @@ public class LoginActivity extends BaseActivity implements ILoginContract.ILogin
 
     @Override
     protected void initData() {
-
-        initClick();
-
+        boolean netWorkConnected = RetrofitUtils.getInstance().isNetWorkConnected(this);
+        if (netWorkConnected == false) {
+            Toast.makeText(this, "没网", Toast.LENGTH_SHORT).show();
+        } else {
+            initClick();
+        }
 
     }
 

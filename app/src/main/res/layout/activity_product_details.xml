@@ -7,5 +7,31 @@
     tools:context=".ui.activity.ProductDetailsActivity">
 
 
+    <TextView
+        android:id="@+id/tv_left_back"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@drawable/tv_text_back"
+        app:layout_constraintBottom_toBottomOf="@id/tab_layout"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tab_layout" />
+
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tab_layout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toRightOf="@id/tv_left_back"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.jcodecraeer.xrecyclerview.XRecyclerView
+        android:id="@+id/details_xrv"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tab_layout" />
 
 </android.support.constraint.ConstraintLayout>

@@ -24,7 +24,7 @@ public class ProductDetailsPresenter extends IProductDetailsContract.ProductDeta
             public void onSuccess(String result) {
                 ProductDetailsEntity productDetailsEntity = new Gson().fromJson(result, ProductDetailsEntity.class);
                 if (iProductDetailsView != null) {
-                    iProductDetailsView.onSuccess(productDetailsEntity.getResult());
+                    iProductDetailsView.onSuccess(productDetailsEntity);
                 }
             }
 

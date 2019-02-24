@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'org.greenrobot.greendao' // apply plugin
 
 android {
     compileSdkVersion 28
@@ -82,6 +83,20 @@ dependencies {
 
     // 支持 GIF 动图，需要添加
     implementation 'com.facebook.fresco:animated-gif:0.12.0'
+
+    // GreenDao
+    implementation 'org.greenrobot:greendao:3.2.2' // add library
+}
+
+greendao {
+    schemaVersion 1 //数据库版本号
+
+    daoPackage 'com.changhao.weidu_project.gen'
+
+// 设置DaoMaster、DaoSession、Dao 包名
+    targetGenDir 'src/main/java'//设置DaoMaster、DaoSession、Dao目录
+    generateTests false //设置为true以自动生成单元测试。
+    targetGenDirTests 'src/main/java' //应存储生成的单元测试的基本目录。默认为 src / androidTest / java。
 }
 
 configurations.all {

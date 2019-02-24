@@ -3,6 +3,8 @@ package com.changhao.weidu_project.ui.fragment;
 import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
+import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.changhao.weidu_project.R;
 import com.changhao.weidu_project.adapter.HomeAdapter;
@@ -14,6 +16,7 @@ import com.changhao.weidu_project.presenter.BannerPresenter;
 import com.changhao.weidu_project.presenter.HomePresenter;
 import com.changhao.weidu_project.ui.activity.ProductDetailsActivity;
 import com.changhao.weidu_project.ui.base.BaseFragment;
+import com.changhao.weidu_project.utils.RetrofitUtils;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 
 import org.greenrobot.eventbus.EventBus;
@@ -28,11 +31,16 @@ import butterknife.ButterKnife;
 public class HomeFragment extends BaseFragment implements IHomeContract.IHomeView, IBannerContract.IBannerView {
 
 
+    @BindView(R.id.imageBtn_menu)
+    ImageButton imageBtn_menu;
+    @BindView(R.id.imageBtn_search)
+    ImageButton imageBtn_search;
     @BindView(R.id.xrv_home)
     XRecyclerView xrv_home;
     private HomePresenter homePresenter;
     private HomeAdapter homeAdapter;
     private BannerPresenter bannerPresenter;
+
 
     @Override
     protected int getViewId() {
@@ -41,10 +49,15 @@ public class HomeFragment extends BaseFragment implements IHomeContract.IHomeVie
 
     @Override
     protected void initData() {
-        HashMap<String, String> homeParams = new HashMap<>();
-        homePresenter.getHome(homeParams);
-        HashMap<String, String> bannerParams = new HashMap<>();
-        bannerPresenter.getBanner(bannerParams);
+        if (RetrofitUtils.getInstance().isNetWorkConnected(getActivity()) == false) {
+            Toast.makeText(getActivity(), "没网", Toast.LENGTH_SHORT).show();
+
+        } else {
+            HashMap<String, String> homeParams = new HashMap<>();
+            homePresenter.getHome(homeParams);
+            HashMap<String, String> bannerParams = new HashMap<>();
+            bannerPresenter.getBanner(bannerParams);
+        }
 
     }
 
@@ -70,6 +83,7 @@ public class HomeFragment extends BaseFragment implements IHomeContract.IHomeVie
             }
         });
 
+
     }
 
     @Subscribe
@@ -83,6 +97,7 @@ public class HomeFragment extends BaseFragment implements IHomeContract.IHomeVie
     public void onRxxpHomeSuccess(List<HomeEntity.ResultBean.RxxpBean> rxxpBeans) {
         if (rxxpBeans != null) {
             homeAdapter.setRxxpBeans(rxxpBeans);
+
         }
     }
 
@@ -110,5 +125,11 @@ public class HomeFragment extends BaseFragment implements IHomeContract.IHomeVie
     @Override
     public void onFailed(String msg) {
 
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
     }
 }

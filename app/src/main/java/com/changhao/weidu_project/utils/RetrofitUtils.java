@@ -1,6 +1,9 @@
 package com.changhao.weidu_project.utils;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 
 import com.changhao.weidu_project.apis.Api;
 import com.changhao.weidu_project.callback.IOkHttpCallback;
@@ -53,6 +56,17 @@ public class RetrofitUtils {
             }
         }
         return instance;
+    }
+
+    public boolean isNetWorkConnected(Context context) {
+        if (context != null) {
+            ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+            NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+            if (networkInfo != null) {
+                return networkInfo.isAvailable();
+            }
+        }
+        return false;
     }
 
     @SuppressLint("CheckResult")
