@@ -143,4 +143,27 @@ public class RetrofitUtils {
         });*/
     }
 
+    @SuppressLint("CheckResult")
+    public void doPut(String apiUrl, HashMap<String, String> parmas, final IOkHttpCallback iOkHttpCallback) {
+        IRetrofitService retrofitService = retrofit.create(IRetrofitService.class);
+        retrofitService.putReg(apiUrl,parmas).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<ResponseBody>() {
+                    @Override
+                    public void accept(ResponseBody responseBody) throws Exception {
+                        String result = responseBody.string();
+                        if (iOkHttpCallback != null) {
+                            iOkHttpCallback.onSuccess(result);
+                        }
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+                        if (iOkHttpCallback != null) {
+                            iOkHttpCallback.onFailed(throwable + "");
+                        }
+                    }
+                });
+    }
+
 }

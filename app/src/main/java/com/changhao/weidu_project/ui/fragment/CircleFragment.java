@@ -1,5 +1,6 @@
 package com.changhao.weidu_project.ui.fragment;
 
+import android.content.SharedPreferences;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 
@@ -30,6 +31,7 @@ public class CircleFragment extends BaseFragment implements ICircleListContract.
 
     @Override
     protected void initData() {
+
         HashMap<String, String> params = new HashMap<>();
         params.put("userId", "831");
         params.put("sessionId", "1550730837662831");

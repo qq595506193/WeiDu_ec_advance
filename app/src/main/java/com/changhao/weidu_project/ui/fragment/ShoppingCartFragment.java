@@ -1,6 +1,7 @@
 package com.changhao.weidu_project.ui.fragment;
 
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.TextView;
@@ -20,7 +21,10 @@ public class ShoppingCartFragment extends BaseFragment {
     @BindView(R.id.ck_qx)
     CheckBox ck_qx;
     @BindView(R.id.shopping_cart_rv)
-    XRecyclerView shopping_cart_rv;
+    RecyclerView shopping_cart_rv;
+    @BindView(R.id.shop_text_go)
+    TextView shop_text_go;
+
     @Override
     protected int getViewId() {
         return R.layout.fragment_shopping_cart;
@@ -33,7 +37,7 @@ public class ShoppingCartFragment extends BaseFragment {
 
     @Override
     protected void initView(View view) {
-        ButterKnife.bind(this,view);
+        ButterKnife.bind(this, view);
 
         shopping_cart_rv.setLayoutManager(new LinearLayoutManager(getActivity()));
     }

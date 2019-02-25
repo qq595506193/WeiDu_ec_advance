@@ -21,6 +21,17 @@
             android:padding="10dp"
             android:textColor="#ff7f57"
             app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/tv_pzsh_more"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_pzsh_more"
+            android:layout_width="35dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@mipmap/image_more"
+            app:layout_constraintBottom_toBottomOf="@id/tv_pzsh_title"
+            app:layout_constraintLeft_toRightOf="@id/tv_pzsh_title"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 

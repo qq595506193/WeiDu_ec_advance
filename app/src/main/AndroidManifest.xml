@@ -27,7 +27,10 @@
         </activity>
         <activity android:name=".ui.activity.MainActivity" />
         <activity android:name=".ui.activity.RegisterActivity" />
-        <activity android:name=".ui.activity.ProductDetailsActivity"></activity>
+        <activity android:name=".ui.activity.ProductDetailsActivity" />
+        <activity android:name=".ui.activity.RxxpActivity" />
+        <activity android:name=".ui.activity.PzshActivity" />
+        <activity android:name=".ui.activity.MlssActivity"></activity>
     </application>
 
 </manifest>

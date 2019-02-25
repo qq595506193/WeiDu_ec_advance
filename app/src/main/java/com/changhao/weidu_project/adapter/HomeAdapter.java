@@ -1,6 +1,7 @@
 package com.changhao.weidu_project.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -16,6 +17,7 @@ import com.changhao.weidu_project.R;
 import com.changhao.weidu_project.callback.IGetItemIdCallback;
 import com.changhao.weidu_project.entity.BannerEntity;
 import com.changhao.weidu_project.entity.HomeEntity;
+import com.changhao.weidu_project.ui.activity.RxxpActivity;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.stx.xhb.xbanner.XBanner;
 
@@ -108,6 +110,15 @@ public class HomeAdapter extends XRecyclerView.Adapter<XRecyclerView.ViewHolder>
                 rxxpViewHolder.rxxp_rv.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
                 RxxpAdapter rxxpAdapter = new RxxpAdapter(context);
                 rxxpViewHolder.rxxp_rv.setAdapter(rxxpAdapter);
+                rxxpViewHolder.tv_rxxp_more.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(context, RxxpActivity.class);
+                        intent.putExtra("categoryId", rxxpBean.getId());
+                        context.startActivity(intent);
+
+                    }
+                });
 
                 rxxpAdapter.setCommodityListBeans(rxxpBean.getCommodityList());
 
@@ -200,11 +211,13 @@ public class HomeAdapter extends XRecyclerView.Adapter<XRecyclerView.ViewHolder>
 
         private final TextView tv_rxxp_title;
         private final RecyclerView rxxp_rv;
+        private final TextView tv_rxxp_more;
 
         public RxxpViewHolder(@NonNull View itemView) {
             super(itemView);
             tv_rxxp_title = itemView.findViewById(R.id.tv_rxxp_title);
             rxxp_rv = itemView.findViewById(R.id.rxxp_rv);
+            tv_rxxp_more = itemView.findViewById(R.id.tv_rxxp_more);
         }
     }
 
@@ -212,11 +225,13 @@ public class HomeAdapter extends XRecyclerView.Adapter<XRecyclerView.ViewHolder>
 
         private final TextView tv_pzsh_title;
         private final RecyclerView pzsh_rv;
+        private final TextView tv_pzsh_more;
 
         public PzshViewHolder(@NonNull View itemView) {
             super(itemView);
             tv_pzsh_title = itemView.findViewById(R.id.tv_pzsh_title);
             pzsh_rv = itemView.findViewById(R.id.pzsh_rv);
+            tv_pzsh_more = itemView.findViewById(R.id.tv_pzsh_more);
         }
     }
 
@@ -224,11 +239,13 @@ public class HomeAdapter extends XRecyclerView.Adapter<XRecyclerView.ViewHolder>
 
         private final TextView tv_mlss_title;
         private final RecyclerView mlss_rv;
+        private final TextView tv_mlss_more;
 
         public MlssViewHolder(@NonNull View itemView) {
             super(itemView);
             tv_mlss_title = itemView.findViewById(R.id.tv_mlss_title);
             mlss_rv = itemView.findViewById(R.id.mlss_rv);
+            tv_mlss_more = itemView.findViewById(R.id.tv_mlss_more);
         }
     }
 }

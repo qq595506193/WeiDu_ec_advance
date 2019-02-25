@@ -2,7 +2,9 @@ package com.changhao.weidu_project.ui.activity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Parcelable;
 import android.text.InputType;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -87,9 +89,9 @@ public class LoginActivity extends BaseActivity implements ILoginContract.ILogin
                 params.put("phone", phone);
                 params.put("pwd", pwd);
                 loginPresenter.getLogin(params);
-
+                //判断复选框是否选中
                 if (ch_remember.isChecked()) {
-
+                    //记住密码的状态
                     editor.putString("phone", phone);
                     editor.putString("pwd", pwd);
                     editor.putBoolean("tiao", true);
@@ -148,17 +150,24 @@ public class LoginActivity extends BaseActivity implements ILoginContract.ILogin
     @Override
     public void onLoginSuccess(LoginEntity loginEntity) {
         if (loginEntity.getStatus().equals("0000")) {
-            Toast.makeText(LoginActivity.this, "登录成功", Toast.LENGTH_SHORT).show();
+            LoginEntity.ResultBean result = loginEntity.getResult();
+            Log.i("TAG", result.getSessionId() + "        " + result.getUserId());
+            editor.putString("sessionId", result.getSessionId());
+            editor.putString("userId", result.getUserId() + "");
+            editor.commit();
+            //跳转到主界面进行商品展示
             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
             startActivity(intent);
+            Toast.makeText(LoginActivity.this, "登录成功", Toast.LENGTH_SHORT).show();
             finish();
         } else {
-            Toast.makeText(LoginActivity.this, "手机号或密码错误", Toast.LENGTH_SHORT).show();
+            Toast.makeText(LoginActivity.this, loginEntity.getMessage() + "msg", Toast.LENGTH_SHORT).show();
         }
     }
 
     @Override
     public void onFailed(String msg) {
-
+        Toast.makeText(LoginActivity.this, msg + "msg02", Toast.LENGTH_SHORT).show();
+        Log.i("TAG", msg);
     }
 }

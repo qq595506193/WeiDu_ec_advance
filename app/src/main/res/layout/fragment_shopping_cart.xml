@@ -12,65 +12,96 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.jcodecraeer.xrecyclerview.XRecyclerView
+        <android.support.v7.widget.RecyclerView
             android:id="@+id/shopping_cart_rv"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_margin="15dp"
-            app:layout_constraintBottom_toTopOf="@id/ctl_01"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginBottom="@dimen/dp_50"
+            android:layout_marginTop="@dimen/dp_20"
+            android:layout_marginLeft="@dimen/dp_14"
+            android:layout_marginRight="@dimen/dp_24"
+            >
 
-        <android.support.constraint.ConstraintLayout
-            android:id="@+id/ctl_01"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+        </android.support.v7.widget.RecyclerView>
+        <View
+            android:id="@+id/shop_view_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_1"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/shop_text_bottom"
+            android:background="#cccccc"/>
+        <TextView
+            android:id="@+id/shop_text_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_50"
+            android:background="#ffffff"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
+            />
+        <CheckBox
+            android:id="@+id/ck_qx"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/shopping_cart_rv">
-
-            <CheckBox
-                android:id="@+id/ck_qx"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:padding="5dp"
-                android:text="全选"
-                app:layout_constraintRight_toLeftOf="@+id/tv_totalPrice"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/tv_totalPrice"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:text="￥：0.0"
-                android:textColor="#ff0000"
-                android:textSize="25sp"
-                app:layout_constraintBottom_toBottomOf="@id/ck_qx"
-                app:layout_constraintLeft_toRightOf="@id/ck_qx"
-                app:layout_constraintRight_toLeftOf="@id/tv_settle"
-                app:layout_constraintTop_toTopOf="@id/ck_qx" />
-
-            <TextView
-                android:id="@+id/tv_settle"
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:background="#ff00ff"
-                android:gravity="center"
-                android:paddingLeft="50dp"
-                android:paddingRight="50dp"
-                android:text="结算"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-
-        </android.support.constraint.ConstraintLayout>
+            app:layout_constraintTop_toTopOf="@id/shop_text_bottom"
+            app:layout_constraintBottom_toBottomOf="@id/shop_text_bottom"
+            android:text="全选"
+            android:textSize="@dimen/sp_12"
+            android:textColor="#cccccc"
+            android:layout_marginLeft="@dimen/dp_14"
+            />
+        <TextView
+            android:id="@+id/shop_text_all"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="@id/shop_text_bottom"
+            app:layout_constraintBottom_toBottomOf="@id/shop_text_bottom"
+            app:layout_constraintLeft_toRightOf="@id/ck_qx"
+            android:layout_marginLeft="@dimen/dp_20"
+            android:text="合计："
+            android:textSize="@dimen/sp_12"
+            android:textColor="#cccccc"
+            />
+        <TextView
+            android:id="@+id/shop_text_allpr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="@id/shop_text_bottom"
+            app:layout_constraintBottom_toBottomOf="@id/shop_text_bottom"
+            app:layout_constraintLeft_toRightOf="@id/shop_text_all"
+            android:text="￥"
+            android:textSize="@dimen/sp_14"
+            android:textColor="#ff0606"
+            />
+        <TextView
+            android:id="@+id/tv_totalPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="@id/shop_text_bottom"
+            app:layout_constraintBottom_toBottomOf="@id/shop_text_bottom"
+            app:layout_constraintLeft_toRightOf="@id/shop_text_allpr"
+            android:text="0"
+            android:textSize="@dimen/sp_14"
+            android:textColor="#ff0606"
+            />
+        <TextView
+            android:id="@+id/shop_text_go"
+            android:layout_width="@dimen/dp_118"
+            android:layout_height="@dimen/dp_50"
+            android:background="#ff5e70"
+            app:layout_constraintTop_toTopOf="@id/shop_text_bottom"
+            app:layout_constraintBottom_toBottomOf="@id/shop_text_bottom"
+            app:layout_constraintRight_toRightOf="@id/shop_text_bottom"
+            android:text="去结算"
+            android:gravity="center"
+            android:textColor="#ffffff"
+            android:textSize="@dimen/sp_16"
+            />
 
     </android.support.constraint.ConstraintLayout>
 

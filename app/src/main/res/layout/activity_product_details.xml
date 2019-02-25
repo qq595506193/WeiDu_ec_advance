@@ -4,34 +4,202 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.activity.ProductDetailsActivity">
+    android:background="#ffffff"
+    android:paddingLeft="@dimen/dp_24">
 
-
-    <TextView
-        android:id="@+id/tv_left_back"
-        android:layout_width="0dp"
+    <LinearLayout
+        android:id="@+id/par_lin"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:background="@drawable/tv_text_back"
-        app:layout_constraintBottom_toBottomOf="@id/tab_layout"
+        android:orientation="horizontal"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="@id/tab_layout" />
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-    <android.support.design.widget.TabLayout
-        android:id="@+id/tab_layout"
-        android:layout_width="0dp"
+        <ImageButton
+            android:id="@+id/par_image_back"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_marginLeft="20dp"
+            android:src="@mipmap/common_nav_btn_back" />
+
+        <LinearLayout
+            android:id="@+id/layour1"
+            android:layout_width="match_parent"
+
+
+            android:layout_height="50dp"
+            android:layout_margin="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/par_goods"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="商品"
+                android:textSize="18dp" />
+
+            <TextView
+                android:id="@+id/par_par"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="详情"
+                android:textSize="18dp" />
+
+            <TextView
+                android:id="@+id/par_comment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="评论"
+                android:textSize="18dp" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintLeft_toRightOf="@id/tv_left_back"
+        android:layout_marginRight="@dimen/dp_24"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/par_lin">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.stx.xhb.xbanner.XBanner
+                android:id="@+id/par_xbanner"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_274"
+                app:isShowNumberIndicator="true"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/par_lin"
+                tools:ignore="NotSibling" />
+
+            <TextView
+                android:id="@+id/par_text_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_14"
+                android:text="agvesdv"
+                android:textColor="#ff0000"
+                android:textSize="@dimen/sp_20"
+                app:layout_constraintLeft_toLeftOf="@id/par_xbanner"
+                app:layout_constraintTop_toBottomOf="@id/par_xbanner" />
+
+            <TextView
+                android:id="@+id/par_text_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="afgbed"
+                android:textColor="#666666"
+                android:textSize="@dimen/sp_12"
+                app:layout_constraintBottom_toBottomOf="@id/par_text_price"
+                app:layout_constraintRight_toRightOf="@id/par_xbanner" />
+
+            <TextView
+                android:id="@+id/par_text_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_20"
+                android:text="fgbntgef"
+                android:textColor="#666666"
+                android:textSize="@dimen/sp_12"
+                app:layout_constraintLeft_toLeftOf="@id/par_xbanner"
+                app:layout_constraintTop_toBottomOf="@id/par_text_price" />
+
+            <TextView
+                android:id="@+id/par_text_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp_10"
+                android:layout_marginTop="@dimen/dp_20"
+                android:lines="1"
+                android:text="fgbntgef"
+                android:textColor="#666666"
+                android:textSize="@dimen/sp_12"
+                app:layout_constraintLeft_toRightOf="@id/par_text_name"
+                app:layout_constraintTop_toBottomOf="@id/par_text_price" />
+
+            <TextView
+                android:id="@+id/par_text_weight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_10"
+                android:text="重量"
+                android:textColor="#666666"
+                android:textSize="@dimen/sp_12"
+                app:layout_constraintLeft_toLeftOf="@id/par_xbanner"
+                app:layout_constraintTop_toBottomOf="@id/par_text_content" />
+
+            <TextView
+                android:id="@+id/par_text_kg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp_10"
+                android:layout_marginTop="@dimen/dp_10"
+                android:text="agehbr"
+                android:textColor="#666666"
+                android:textSize="@dimen/sp_12"
+                app:layout_constraintLeft_toRightOf="@id/par_text_weight"
+                app:layout_constraintTop_toBottomOf="@id/par_text_content" />
+
+            <TextView
+                android:id="@+id/par_text_qing"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_20"
+                android:text="商品详情"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/par_text_weight" />
+
+
+            <WebView
+                android:id="@+id/par_webview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_20"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/par_text_qing"></WebView>
+        </android.support.constraint.ConstraintLayout>
+
+
+    </ScrollView>
+
+    <ImageButton
+        android:id="@+id/par_image_addshop"
+        android:layout_width="40dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="@dimen/dp_400"
+        android:background="@drawable/particulars_radius"
+        android:padding="@dimen/dp_3"
+        android:src="@mipmap/common_btn_add"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.jcodecraeer.xrecyclerview.XRecyclerView
-        android:id="@+id/details_xrv"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
+    <ImageButton
+        android:id="@+id/par_image_buy"
+        android:layout_width="40dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="@dimen/dp_40"
+        android:background="@drawable/particulars_radius"
+        android:padding="@dimen/dp_3"
+        android:src="@mipmap/common_btn_buy"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tab_layout" />
+        app:layout_constraintTop_toTopOf="@id/par_image_addshop" />
+
 
 </android.support.constraint.ConstraintLayout>
+

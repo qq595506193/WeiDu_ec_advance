@@ -19,7 +19,9 @@ import com.changhao.weidu_project.presenter.LikePresenter;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -48,13 +50,24 @@ public class CircleListAdapter extends XRecyclerView.Adapter<CircleListAdapter.V
         return viewHolder;
     }
 
+    public static String getDateStr(Date date, String format) {
+        if (format == null || format.isEmpty()) {
+            format = "yyyy-MM-dd HH:mm:ss";
+        }
+        SimpleDateFormat dateFormat = new SimpleDateFormat(format);
+        return dateFormat.format(date);
+    }
+
     @Override
     public void onBindViewHolder(@NonNull CircleListAdapter.ViewHolder viewHolder, int i) {
         CircleListEntity.ResultBean resultBean = circleResultBeans.get(i);
         Uri uri = Uri.parse(resultBean.getHeadPic());
         viewHolder.circle_head_icon.setImageURI(uri);
         viewHolder.tv_head_name.setText(resultBean.getNickName());
-        viewHolder.tv_head_time.setText(resultBean.getCreateTime() + "");
+
+        Date date = new Date(resultBean.getCreateTime());
+        viewHolder.tv_head_time.setText(getDateStr(date,null));
+
         viewHolder.tv_content.setText(resultBean.getContent());
         viewHolder.tv_content_praise_count.setText(resultBean.getGreatNum() + "");
 
@@ -92,7 +105,7 @@ public class CircleListAdapter extends XRecyclerView.Adapter<CircleListAdapter.V
         int greatNum = resultBean.getGreatNum();
 
         LikePresenter likePresenter = new LikePresenter(this);
-        initPraise(id,greatNum,likePresenter);
+        initPraise(id, greatNum, likePresenter);
 
     }
 
@@ -101,14 +114,14 @@ public class CircleListAdapter extends XRecyclerView.Adapter<CircleListAdapter.V
             @Override
             public void onClick(View v) {
                 HashMap<String, String> bodyParams = new HashMap<>();
-                bodyParams.put("circleId",id+"");
-                HashMap<String,String> headersParams = new HashMap<>();
-                headersParams.put("userId","831");
-                headersParams.put("sessionId","1550730837662831");
+                bodyParams.put("circleId", id + "");
+                HashMap<String, String> headersParams = new HashMap<>();
+                headersParams.put("userId", "831");
+                headersParams.put("sessionId", "1550730837662831");
 
                 likePresenter.getLike(bodyParams);
                 likePresenter.getLike(headersParams);
-                viewHolder.tv_content_praise_count.setText(i+1+"");
+                viewHolder.tv_content_praise_count.setText(i + 1 + "");
             }
         });
     }
@@ -122,7 +135,7 @@ public class CircleListAdapter extends XRecyclerView.Adapter<CircleListAdapter.V
     public void onSuccess(LikeEntity likeEntity) {
         if (likeEntity != null) {
             if (likeEntity.equals("0000")) {
-                Toast.makeText(context,"点赞成功",Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "点赞成功", Toast.LENGTH_SHORT).show();
             }
         }
     }
