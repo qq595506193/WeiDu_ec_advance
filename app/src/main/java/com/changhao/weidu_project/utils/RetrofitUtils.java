@@ -8,6 +8,7 @@ import android.net.NetworkInfo;
 import com.changhao.weidu_project.apis.Api;
 import com.changhao.weidu_project.callback.IOkHttpCallback;
 import com.changhao.weidu_project.callback.IRetrofitService;
+import com.changhao.weidu_project.interceptor.MyInterceptor;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
 import java.util.HashMap;
@@ -33,6 +34,7 @@ public class RetrofitUtils {
         httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         okHttpClient = new OkHttpClient.Builder()
                 .addNetworkInterceptor(httpLoggingInterceptor)
+                .addInterceptor(new MyInterceptor())
                 .writeTimeout(20, TimeUnit.SECONDS)
                 .connectTimeout(20, TimeUnit.SECONDS)
                 .readTimeout(20, TimeUnit.SECONDS)
@@ -146,7 +148,7 @@ public class RetrofitUtils {
     @SuppressLint("CheckResult")
     public void doPut(String apiUrl, HashMap<String, String> parmas, final IOkHttpCallback iOkHttpCallback) {
         IRetrofitService retrofitService = retrofit.create(IRetrofitService.class);
-        retrofitService.putReg(apiUrl,parmas).subscribeOn(Schedulers.io())
+        retrofitService.putReg(apiUrl, parmas).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<ResponseBody>() {
                     @Override

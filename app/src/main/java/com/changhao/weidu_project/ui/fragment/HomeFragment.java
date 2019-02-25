@@ -86,6 +86,12 @@ public class HomeFragment extends BaseFragment implements IHomeContract.IHomeVie
 
     }
 
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        EventBus.getDefault().unregister(this);
+    }
+
     @Subscribe
     public void itemClick(String itemId) {
         Intent intent = new Intent(getActivity(), ProductDetailsActivity.class);

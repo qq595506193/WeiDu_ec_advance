@@ -125,12 +125,6 @@ public class ProductDetailsActivity extends BaseActivity implements IProductDeta
                 public void onClick(View v) {
                     Toast.makeText(ProductDetailsActivity.this, "点击了加购", Toast.LENGTH_SHORT).show();
                     HashMap<String, String> params = new HashMap<>();
-                    SharedPreferences tiao = getSharedPreferences("tiao", MODE_PRIVATE);
-                    String sessionId = tiao.getString("sessionId", null);
-                    String userId = tiao.getString("userId", null);
-
-                    params.put("sessionId", sessionId);
-                    params.put("userId", userId);
                     params.put("data", result.getCommodityId() + "");
                     syncShoppingCartPresenter.getSyncShopping(params);
                 }
