@@ -70,8 +70,8 @@
 
             <com.changhao.weidu_project.widget.AddMinusView
                 android:id="@+id/item_select_count"
-                android:layout_width="50dp"
-                android:layout_height="0dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 app:layout_constraintBottom_toBottomOf="@id/item_select_text_price"
                 app:layout_constraintLeft_toRightOf="@id/item_select_text_price"
                 app:layout_constraintRight_toRightOf="parent"

@@ -125,7 +125,7 @@ public class ProductDetailsActivity extends BaseActivity implements IProductDeta
                 public void onClick(View v) {
                     Toast.makeText(ProductDetailsActivity.this, "点击了加购", Toast.LENGTH_SHORT).show();
                     HashMap<String, String> params = new HashMap<>();
-                    params.put("data", result.getCommodityId() + "");
+                    params.put("data",  "[{" + "commodityId:" + result.getCommodityId() + "," + "count:1}]");
                     syncShoppingCartPresenter.getSyncShopping(params);
                 }
             });

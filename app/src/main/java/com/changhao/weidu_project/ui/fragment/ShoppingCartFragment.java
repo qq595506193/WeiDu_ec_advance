@@ -1,7 +1,6 @@
 package com.changhao.weidu_project.ui.fragment;
 
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.TextView;
@@ -12,6 +11,7 @@ import com.changhao.weidu_project.contract.ISearchShoppingContract;
 import com.changhao.weidu_project.entity.SearchShoppingEntity;
 import com.changhao.weidu_project.presenter.SearchShoppingPresenter;
 import com.changhao.weidu_project.ui.base.BaseFragment;
+import com.jcodecraeer.xrecyclerview.XRecyclerView;
 
 import java.util.HashMap;
 import java.util.List;
@@ -26,8 +26,8 @@ public class ShoppingCartFragment extends BaseFragment implements ISearchShoppin
     TextView tv_totalPrice;
     @BindView(R.id.ck_qx)
     CheckBox ck_qx;
-    @BindView(R.id.shopping_cart_rv)
-    RecyclerView shopping_cart_rv;
+    @BindView(R.id.shopping_cart_xrv)
+    XRecyclerView shopping_cart_xrv;
     @BindView(R.id.shop_text_go)
     TextView shop_text_go;
     private SearchShoppingAdapter searchShoppingAdapter;
@@ -47,12 +47,22 @@ public class ShoppingCartFragment extends BaseFragment implements ISearchShoppin
     @Override
     protected void initView(View view) {
         ButterKnife.bind(this, view);
-
         searchShoppingPresenter = new SearchShoppingPresenter(this);
-        shopping_cart_rv.setLayoutManager(new LinearLayoutManager(getActivity()));
+        shopping_cart_xrv.setLayoutManager(new LinearLayoutManager(getActivity()));
         searchShoppingAdapter = new SearchShoppingAdapter(getActivity());
-        shopping_cart_rv.setAdapter(searchShoppingAdapter);
+        shopping_cart_xrv.setAdapter(searchShoppingAdapter);
+        shopping_cart_xrv.setLoadingListener(new XRecyclerView.LoadingListener() {
+            @Override
+            public void onRefresh() {
+                initData();
+                shopping_cart_xrv.refreshComplete();
+            }
 
+            @Override
+            public void onLoadMore() {
+                shopping_cart_xrv.loadMoreComplete();
+            }
+        });
     }
 
     @Override

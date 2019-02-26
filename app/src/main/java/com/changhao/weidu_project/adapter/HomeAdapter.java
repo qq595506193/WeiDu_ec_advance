@@ -81,19 +81,19 @@ public class HomeAdapter extends XRecyclerView.Adapter<XRecyclerView.ViewHolder>
     @Override
     public XRecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View view;
-        if (getItemViewType(i) == RXXP_ITEM) {
+        if (getItemViewType(i) == RXXP_ITEM) {// 热销新品
             view = LayoutInflater.from(context).inflate(R.layout.item_rxxp, viewGroup, false);
             rxxpViewHolder = new RxxpViewHolder(view);
             return rxxpViewHolder;
-        } else if (getItemViewType(i) == PZSH_ITEM) {
+        } else if (getItemViewType(i) == PZSH_ITEM) {// 品质生活
             view = LayoutInflater.from(context).inflate(R.layout.item_pzsh, viewGroup, false);
             pzshViewHolder = new PzshViewHolder(view);
             return pzshViewHolder;
-        } else if (getItemViewType(i) == MLSS_ITEM) {
+        } else if (getItemViewType(i) == MLSS_ITEM) {// 魔力时尚
             view = LayoutInflater.from(context).inflate(R.layout.item_mlss, viewGroup, false);
             mlssViewHolder = new MlssViewHolder(view);
             return mlssViewHolder;
-        } else if (getItemViewType(i) == BANNER_ITEM) {
+        } else if (getItemViewType(i) == BANNER_ITEM) {// 轮播
             view = LayoutInflater.from(context).inflate(R.layout.item_banner, viewGroup, false);
             bannerViewHolder = new BannerViewHolder(view);
             return bannerViewHolder;
@@ -104,7 +104,7 @@ public class HomeAdapter extends XRecyclerView.Adapter<XRecyclerView.ViewHolder>
     @Override
     public void onBindViewHolder(@NonNull final XRecyclerView.ViewHolder viewHolder, final int i) {
         if (rxxpBeans.size() > 0 && pzshBeans.size() > 0 && mlssBeans.size() > 0) {
-            if (getItemViewType(i) == RXXP_ITEM) {
+            if (getItemViewType(i) == RXXP_ITEM) {// 热销新品
                 final HomeEntity.ResultBean.RxxpBean rxxpBean = rxxpBeans.get(0);
                 rxxpViewHolder.tv_rxxp_title.setText(rxxpBean.getName());
                 rxxpViewHolder.rxxp_rv.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
@@ -122,7 +122,7 @@ public class HomeAdapter extends XRecyclerView.Adapter<XRecyclerView.ViewHolder>
 
                 rxxpAdapter.setCommodityListBeans(rxxpBean.getCommodityList());
 
-            } else if (getItemViewType(i) == PZSH_ITEM) {
+            } else if (getItemViewType(i) == PZSH_ITEM) {// 品质生活
                 final HomeEntity.ResultBean.PzshBean pzshBean = pzshBeans.get(0);
                 pzshViewHolder.tv_pzsh_title.setText(pzshBean.getName());
                 pzshViewHolder.pzsh_rv.setLayoutManager(new GridLayoutManager(context, 2));
@@ -139,7 +139,7 @@ public class HomeAdapter extends XRecyclerView.Adapter<XRecyclerView.ViewHolder>
                         }
                     }
                 });
-            } else if (getItemViewType(i) == MLSS_ITEM) {
+            } else if (getItemViewType(i) == MLSS_ITEM) {// 魔力时尚
                 final HomeEntity.ResultBean.MlssBean mlssBean = mlssBeans.get(0);
                 mlssViewHolder.tv_mlss_title.setText(mlssBean.getName());
                 mlssViewHolder.mlss_rv.setLayoutManager(new LinearLayoutManager(context));
@@ -156,7 +156,7 @@ public class HomeAdapter extends XRecyclerView.Adapter<XRecyclerView.ViewHolder>
                         }
                     }
                 });
-            } else if (getItemViewType(i) == BANNER_ITEM) {
+            } else if (getItemViewType(i) == BANNER_ITEM) {// 轮播
                 final List<BannerEntity.ResultBean> result = bannerEntity.getResult();
                 bannerViewHolder.xBanner.setData(result, null);
                 bannerViewHolder.xBanner.loadImage(new XBanner.XBannerAdapter() {

@@ -13,11 +13,12 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.changhao.weidu_project.R;
 import com.changhao.weidu_project.entity.SearchShoppingEntity;
+import com.jcodecraeer.xrecyclerview.XRecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class SearchShoppingAdapter extends RecyclerView.Adapter<SearchShoppingAdapter.ViewHolder> {
+public class SearchShoppingAdapter extends XRecyclerView.Adapter<SearchShoppingAdapter.ViewHolder> {
     private Context context;
     private List<SearchShoppingEntity.ResultBean> resultBeans;
 
@@ -69,7 +70,7 @@ public class SearchShoppingAdapter extends RecyclerView.Adapter<SearchShoppingAd
         return resultBeans == null ? 0 : resultBeans.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends XRecyclerView.ViewHolder {
 
         private final TextView item_select_text_delete;
         private final CheckBox item_select_box_all;
