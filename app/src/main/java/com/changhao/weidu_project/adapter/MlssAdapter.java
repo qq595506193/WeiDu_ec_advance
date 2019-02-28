@@ -48,7 +48,7 @@ public class MlssAdapter extends RecyclerView.Adapter<MlssAdapter.ViewHolder> {
         Uri uri = Uri.parse(commodityListBeanXX.getMasterPic());
         viewHolder.iv_mlss_icon.setImageURI(uri);
         viewHolder.tv_mlss_name.setText(commodityListBeanXX.getCommodityName());
-        viewHolder.tv_mlss_price.setText(commodityListBeanXX.getPrice());
+        viewHolder.tv_mlss_price.setText(commodityListBeanXX.getPrice() + "");
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

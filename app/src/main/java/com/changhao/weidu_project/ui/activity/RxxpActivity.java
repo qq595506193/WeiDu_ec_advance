@@ -6,16 +6,19 @@ import android.widget.TextView;
 
 import com.changhao.weidu_project.R;
 import com.changhao.weidu_project.adapter.RxxpAdapter;
-import com.changhao.weidu_project.presenter.HomePresenter;
+import com.changhao.weidu_project.contract.IRxxpContract;
+import com.changhao.weidu_project.entity.HomeEntity;
+import com.changhao.weidu_project.presenter.RxxpPresenter;
 import com.changhao.weidu_project.ui.base.BaseActivity;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 
 import java.util.HashMap;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class RxxpActivity extends BaseActivity {
+public class RxxpActivity extends BaseActivity implements IRxxpContract.IRxxpView {
 
     @BindView(R.id.seek_navigation)
     TextView seek_navigation;
@@ -28,19 +31,19 @@ public class RxxpActivity extends BaseActivity {
 
     @BindView(R.id.seek_claasify_xrv)
     XRecyclerView seek_claasify_xrv;
-    private HomePresenter homePresenter;
     private RxxpAdapter rxxpAdapter;
+    private RxxpPresenter rxxpPresenter;
 
     @Override
     protected void initData() {
         HashMap<String, String> params = new HashMap<>();
-        homePresenter.getHome(params);
+        rxxpPresenter.getRxxp(params);
     }
 
     @Override
     protected void initView() {
         ButterKnife.bind(this);
-
+        rxxpPresenter = new RxxpPresenter(this);
         rxxpAdapter = new RxxpAdapter(this);
         seek_claasify_xrv.setLayoutManager(new GridLayoutManager(this, 2));
         seek_claasify_xrv.setAdapter(rxxpAdapter);
@@ -65,4 +68,15 @@ public class RxxpActivity extends BaseActivity {
     }
 
 
+    @Override
+    public void onSuccess(List<HomeEntity.ResultBean.RxxpBean.CommodityListBean> commodityListBeans) {
+        if (commodityListBeans != null) {
+            rxxpAdapter.setCommodityListBeans(commodityListBeans);
+        }
+    }
+
+    @Override
+    public void onFailed(String msg) {
+
+    }
 }

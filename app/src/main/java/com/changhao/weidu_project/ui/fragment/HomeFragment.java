@@ -23,7 +23,6 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
 import java.util.HashMap;
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -87,6 +86,11 @@ public class HomeFragment extends BaseFragment implements IHomeContract.IHomeVie
     }
 
     @Override
+    protected String getCacheDir() {
+        return null;
+    }
+
+    @Override
     public void onDestroyView() {
         super.onDestroyView();
         EventBus.getDefault().unregister(this);
@@ -100,7 +104,7 @@ public class HomeFragment extends BaseFragment implements IHomeContract.IHomeVie
     }
 
     @Override
-    public void onRxxpHomeSuccess(List<HomeEntity.ResultBean.RxxpBean> rxxpBeans) {
+    public void onRxxpHomeSuccess(HomeEntity.ResultBean.RxxpBean rxxpBeans) {
         if (rxxpBeans != null) {
             homeAdapter.setRxxpBeans(rxxpBeans);
 
@@ -108,14 +112,14 @@ public class HomeFragment extends BaseFragment implements IHomeContract.IHomeVie
     }
 
     @Override
-    public void onMlssHomeSuccess(List<HomeEntity.ResultBean.MlssBean> mlssBeans) {
+    public void onMlssHomeSuccess(HomeEntity.ResultBean.MlssBean mlssBeans) {
         if (mlssBeans != null) {
             homeAdapter.setMlssBeans(mlssBeans);
         }
     }
 
     @Override
-    public void onPzshHomeSuccess(List<HomeEntity.ResultBean.PzshBean> pzshBeans) {
+    public void onPzshHomeSuccess(HomeEntity.ResultBean.PzshBean pzshBeans) {
         if (pzshBeans != null) {
             homeAdapter.setPzshBeans(pzshBeans);
         }

@@ -4,7 +4,6 @@ import com.changhao.weidu_project.callback.IRequestCallback;
 import com.changhao.weidu_project.entity.HomeEntity;
 
 import java.util.HashMap;
-import java.util.List;
 
 public interface IHomeContract {
     abstract class HomePresenter {
@@ -16,11 +15,11 @@ public interface IHomeContract {
     }
 
     interface IHomeView {
-        void onRxxpHomeSuccess(List<HomeEntity.ResultBean.RxxpBean> rxxpBeans);
+        void onRxxpHomeSuccess(HomeEntity.ResultBean.RxxpBean rxxpBeans);
 
-        void onMlssHomeSuccess(List<HomeEntity.ResultBean.MlssBean> mlssBeans);
+        void onMlssHomeSuccess(HomeEntity.ResultBean.MlssBean mlssBeans);
 
-        void onPzshHomeSuccess(List<HomeEntity.ResultBean.PzshBean> pzshBeans);
+        void onPzshHomeSuccess(HomeEntity.ResultBean.PzshBean pzshBeans);
 
         void onFailed(String msg);
     }

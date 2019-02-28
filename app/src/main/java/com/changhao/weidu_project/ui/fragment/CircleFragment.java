@@ -60,6 +60,11 @@ public class CircleFragment extends BaseFragment implements ICircleListContract.
     }
 
     @Override
+    protected String getCacheDir() {
+        return null;
+    }
+
+    @Override
     public void onSuccess(List<CircleListEntity.ResultBean> circleResultBeans) {
         if (circleResultBeans != null) {
             circleListAdapter.setCircleResultBeans(circleResultBeans);

@@ -27,4 +27,6 @@ public abstract class BaseFragment extends Fragment {
     protected abstract void initData();
 
     protected abstract void initView(View view);
+
+    protected abstract String getCacheDir();
 }

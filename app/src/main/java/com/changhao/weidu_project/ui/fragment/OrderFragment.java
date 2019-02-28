@@ -20,4 +20,9 @@ public class OrderFragment extends BaseFragment {
     protected void initView(View view) {
 
     }
+
+    @Override
+    protected String getCacheDir() {
+        return null;
+    }
 }

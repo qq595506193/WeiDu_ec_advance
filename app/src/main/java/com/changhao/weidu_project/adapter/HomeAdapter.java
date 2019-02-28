@@ -21,14 +21,13 @@ import com.changhao.weidu_project.ui.activity.RxxpActivity;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.stx.xhb.xbanner.XBanner;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class HomeAdapter extends XRecyclerView.Adapter<XRecyclerView.ViewHolder> {
     private Context context;
-    private List<HomeEntity.ResultBean.RxxpBean> rxxpBeans;
-    private List<HomeEntity.ResultBean.PzshBean> pzshBeans;
-    private List<HomeEntity.ResultBean.MlssBean> mlssBeans;
+    private HomeEntity.ResultBean.RxxpBean rxxpBeans;
+    private HomeEntity.ResultBean.PzshBean pzshBeans;
+    private HomeEntity.ResultBean.MlssBean mlssBeans;
     private BannerEntity bannerEntity;
     private RxxpViewHolder rxxpViewHolder;
     private PzshViewHolder pzshViewHolder;
@@ -36,9 +35,9 @@ public class HomeAdapter extends XRecyclerView.Adapter<XRecyclerView.ViewHolder>
     private BannerViewHolder bannerViewHolder;
 
     public HomeAdapter(Context context) {
-        rxxpBeans = new ArrayList<>();
-        pzshBeans = new ArrayList<>();
-        mlssBeans = new ArrayList<>();
+        rxxpBeans = new HomeEntity.ResultBean.RxxpBean();
+        mlssBeans = new HomeEntity.ResultBean.MlssBean();
+        pzshBeans = new HomeEntity.ResultBean.PzshBean();
         bannerEntity = new BannerEntity();
         this.context = context;
     }
@@ -50,21 +49,21 @@ public class HomeAdapter extends XRecyclerView.Adapter<XRecyclerView.ViewHolder>
         notifyDataSetChanged();
     }
 
-    public void setRxxpBeans(List<HomeEntity.ResultBean.RxxpBean> rxxpBeans) {
+    public void setRxxpBeans(HomeEntity.ResultBean.RxxpBean rxxpBeans) {
         if (rxxpBeans != null) {
             this.rxxpBeans = rxxpBeans;
         }
         notifyDataSetChanged();
     }
 
-    public void setPzshBeans(List<HomeEntity.ResultBean.PzshBean> pzshBeans) {
+    public void setPzshBeans(HomeEntity.ResultBean.PzshBean pzshBeans) {
         if (pzshBeans != null) {
             this.pzshBeans = pzshBeans;
         }
         notifyDataSetChanged();
     }
 
-    public void setMlssBeans(List<HomeEntity.ResultBean.MlssBean> mlssBeans) {
+    public void setMlssBeans(HomeEntity.ResultBean.MlssBean mlssBeans) {
         if (mlssBeans != null) {
             this.mlssBeans = mlssBeans;
         }
@@ -103,10 +102,9 @@ public class HomeAdapter extends XRecyclerView.Adapter<XRecyclerView.ViewHolder>
 
     @Override
     public void onBindViewHolder(@NonNull final XRecyclerView.ViewHolder viewHolder, final int i) {
-        if (rxxpBeans.size() > 0 && pzshBeans.size() > 0 && mlssBeans.size() > 0) {
             if (getItemViewType(i) == RXXP_ITEM) {// 热销新品
-                final HomeEntity.ResultBean.RxxpBean rxxpBean = rxxpBeans.get(0);
-                rxxpViewHolder.tv_rxxp_title.setText(rxxpBean.getName());
+
+                rxxpViewHolder.tv_rxxp_title.setText(rxxpBeans.getName());
                 rxxpViewHolder.rxxp_rv.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
                 RxxpAdapter rxxpAdapter = new RxxpAdapter(context);
                 rxxpViewHolder.rxxp_rv.setAdapter(rxxpAdapter);
@@ -114,51 +112,50 @@ public class HomeAdapter extends XRecyclerView.Adapter<XRecyclerView.ViewHolder>
                     @Override
                     public void onClick(View v) {
                         Intent intent = new Intent(context, RxxpActivity.class);
-                        intent.putExtra("categoryId", rxxpBean.getId());
+                        intent.putExtra("categoryId", rxxpBeans.getId());
                         context.startActivity(intent);
 
                     }
                 });
 
-                rxxpAdapter.setCommodityListBeans(rxxpBean.getCommodityList());
+                rxxpAdapter.setCommodityListBeans(rxxpBeans.getCommodityList());
 
             } else if (getItemViewType(i) == PZSH_ITEM) {// 品质生活
-                final HomeEntity.ResultBean.PzshBean pzshBean = pzshBeans.get(0);
-                pzshViewHolder.tv_pzsh_title.setText(pzshBean.getName());
+                pzshViewHolder.tv_pzsh_title.setText(pzshBeans.getName());
                 pzshViewHolder.pzsh_rv.setLayoutManager(new GridLayoutManager(context, 2));
                 PzshAdapter pzshAdapter = new PzshAdapter(context);
                 pzshViewHolder.pzsh_rv.setAdapter(pzshAdapter);
 
-                pzshAdapter.setCommodityListBeanXES(pzshBean.getCommodityList());
+                pzshAdapter.setCommodityListBeanXES(pzshBeans.getCommodityList());
 
                 viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         if (iGetItemIdCallback != null) {
-                            iGetItemIdCallback.getItemId(pzshBean.getCommodityList().get(i).getCommodityId());
+                            iGetItemIdCallback.getItemId(pzshBeans.getCommodityList().get(i).getCommodityId() + "");
                         }
                     }
                 });
             } else if (getItemViewType(i) == MLSS_ITEM) {// 魔力时尚
-                final HomeEntity.ResultBean.MlssBean mlssBean = mlssBeans.get(0);
-                mlssViewHolder.tv_mlss_title.setText(mlssBean.getName());
+                mlssViewHolder.tv_mlss_title.setText(mlssBeans.getName());
                 mlssViewHolder.mlss_rv.setLayoutManager(new LinearLayoutManager(context));
                 MlssAdapter mlssAdapter = new MlssAdapter(context);
                 mlssViewHolder.mlss_rv.setAdapter(mlssAdapter);
 
-                mlssAdapter.setCommodityListBeanXXES(mlssBean.getCommodityList());
+                mlssAdapter.setCommodityListBeanXXES(mlssBeans.getCommodityList());
 
                 viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         if (iGetItemIdCallback != null) {
-                            iGetItemIdCallback.getItemId(mlssBean.getCommodityList().get(i).getCommodityId());
+                            iGetItemIdCallback.getItemId(mlssBeans.getCommodityList().get(i).getCommodityId() + "");
                         }
                     }
                 });
             } else if (getItemViewType(i) == BANNER_ITEM) {// 轮播
                 final List<BannerEntity.ResultBean> result = bannerEntity.getResult();
                 bannerViewHolder.xBanner.setData(result, null);
+                bannerViewHolder.xBanner.setClipChildrenLeftRightMargin(20);
                 bannerViewHolder.xBanner.loadImage(new XBanner.XBannerAdapter() {
                     @Override
                     public void loadBanner(XBanner banner, Object model, View view, int position) {
@@ -169,7 +166,6 @@ public class HomeAdapter extends XRecyclerView.Adapter<XRecyclerView.ViewHolder>
             }
 
 
-        }
     }
 
     public IGetItemIdCallback iGetItemIdCallback;

@@ -66,6 +66,11 @@ public class ShoppingCartFragment extends BaseFragment implements ISearchShoppin
     }
 
     @Override
+    protected String getCacheDir() {
+        return null;
+    }
+
+    @Override
     public void onSuccess(List<SearchShoppingEntity.ResultBean> resultBeans) {
         if (resultBeans != null) {
             searchShoppingAdapter.setResultBeans(resultBeans);

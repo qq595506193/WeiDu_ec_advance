@@ -6,11 +6,13 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
 import com.changhao.weidu_project.apis.Api;
+import com.changhao.weidu_project.apis.UpLoadHeaderApi;
 import com.changhao.weidu_project.callback.IOkHttpCallback;
 import com.changhao.weidu_project.callback.IRetrofitService;
 import com.changhao.weidu_project.interceptor.MyInterceptor;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 
@@ -163,6 +165,30 @@ public class RetrofitUtils {
                     public void accept(Throwable throwable) throws Exception {
                         if (iOkHttpCallback != null) {
                             iOkHttpCallback.onFailed(throwable + "");
+                        }
+                    }
+                });
+    }
+
+    @SuppressLint("CheckResult")
+    public void upload(String apiUrl, File file, final IOkHttpCallback iOkHttpCallback) {
+        IRetrofitService retrofitService = retrofit.create(IRetrofitService.class);
+        retrofitService.upload(apiUrl,file)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<ResponseBody>() {
+                    @Override
+                    public void accept(ResponseBody responseBody) throws Exception {
+                        String result = responseBody.string();
+                        if (iOkHttpCallback != null) {
+                            iOkHttpCallback.onSuccess(result);
+                        }
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+                        if (iOkHttpCallback != null) {
+                            iOkHttpCallback.onFailed(throwable+"");
                         }
                     }
                 });
