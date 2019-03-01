@@ -7,8 +7,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.changhao.weidu_project.R;
@@ -44,15 +46,20 @@ public class SearchShoppingAdapter extends XRecyclerView.Adapter<SearchShoppingA
 
     @Override
     public void onBindViewHolder(@NonNull SearchShoppingAdapter.ViewHolder viewHolder, int i) {
-        SearchShoppingEntity.ResultBean resultBean = resultBeans.get(i);
+        final SearchShoppingEntity.ResultBean resultBean = resultBeans.get(i);
         Glide.with(context).load(resultBean.getPic()).into(viewHolder.item_select_image);
         viewHolder.item_select_text_name.setText(resultBean.getCommodityName());
         viewHolder.item_select_text_price.setText("￥：" + resultBean.getPrice());
-        // 点击全选
+        // 点击Checked
         viewHolder.item_select_box_all.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                if (resultBean.isItemChecked()) {
+                    resultBean.setItemChecked(true);
+                }else {
+                    resultBean.setItemChecked(false);
+                }
+                notifyDataSetChanged();
             }
         });
 

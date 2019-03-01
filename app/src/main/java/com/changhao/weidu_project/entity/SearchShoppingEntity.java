@@ -51,7 +51,16 @@ public class SearchShoppingEntity {
         private String commodityName;
         private int count;
         private String pic;
-        private int price;
+        private double price;
+        private boolean isItemChecked;
+
+        public boolean isItemChecked() {
+            return isItemChecked;
+        }
+
+        public void setItemChecked(boolean itemChecked) {
+            isItemChecked = itemChecked;
+        }
 
         public int getCommodityId() {
             return commodityId;
@@ -85,11 +94,11 @@ public class SearchShoppingEntity {
             this.pic = pic;
         }
 
-        public int getPrice() {
+        public double getPrice() {
             return price;
         }
 
-        public void setPrice(int price) {
+        public void setPrice(double price) {
             this.price = price;
         }
     }

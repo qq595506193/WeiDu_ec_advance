@@ -3,7 +3,9 @@ package com.changhao.weidu_project.ui.fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.changhao.weidu_project.R;
 import com.changhao.weidu_project.adapter.SearchShoppingAdapter;
@@ -63,6 +65,8 @@ public class ShoppingCartFragment extends BaseFragment implements ISearchShoppin
                 shopping_cart_xrv.loadMoreComplete();
             }
         });
+
+
     }
 
     @Override
@@ -71,9 +75,27 @@ public class ShoppingCartFragment extends BaseFragment implements ISearchShoppin
     }
 
     @Override
-    public void onSuccess(List<SearchShoppingEntity.ResultBean> resultBeans) {
+    public void onSuccess(final List<SearchShoppingEntity.ResultBean> resultBeans) {
         if (resultBeans != null) {
             searchShoppingAdapter.setResultBeans(resultBeans);
+            ck_qx.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    if (isChecked) {
+                        Toast.makeText(getActivity(),"选中",Toast.LENGTH_SHORT).show();
+                        for (SearchShoppingEntity.ResultBean resultBean : resultBeans) {
+                            resultBean.setItemChecked(true);
+                        }
+
+                    }else {
+                        Toast.makeText(getActivity(),"未选中",Toast.LENGTH_SHORT).show();
+                        for (SearchShoppingEntity.ResultBean resultBean : resultBeans) {
+                            resultBean.setItemChecked(false);
+                        }
+                    }
+                    searchShoppingAdapter.notifyDataSetChanged();
+                }
+            });
         }
     }
 

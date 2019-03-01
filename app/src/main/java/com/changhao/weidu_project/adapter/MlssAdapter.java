@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.changhao.weidu_project.R;
 import com.changhao.weidu_project.entity.HomeEntity;
@@ -48,11 +49,11 @@ public class MlssAdapter extends RecyclerView.Adapter<MlssAdapter.ViewHolder> {
         Uri uri = Uri.parse(commodityListBeanXX.getMasterPic());
         viewHolder.iv_mlss_icon.setImageURI(uri);
         viewHolder.tv_mlss_name.setText(commodityListBeanXX.getCommodityName());
-        viewHolder.tv_mlss_price.setText(commodityListBeanXX.getPrice() + "");
+        viewHolder.tv_mlss_price.setText("￥：" + commodityListBeanXX.getPrice());
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EventBus.getDefault().post(commodityListBeanXX.getCommodityId());
+                EventBus.getDefault().post(commodityListBeanXX.getCommodityId() + "");
             }
         });
     }

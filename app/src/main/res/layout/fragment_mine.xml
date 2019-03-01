@@ -11,7 +11,7 @@
         android:id="@+id/mine_view"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="95dp"
+        android:layout_marginTop="@dimen/dp_180"
         android:background="@drawable/my_shape_radius"
         app:layout_constraintBottom_toBottomOf="parent"
         fresco:layout_constraintLeft_toLeftOf="parent"
@@ -22,11 +22,12 @@
         android:id="@+id/my_image_header"
         android:layout_width="@dimen/dp_80"
         android:layout_height="@dimen/dp_80"
-        android:layout_marginTop="@dimen/dp_50"
+        android:layout_marginTop="@dimen/dp_135"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        fresco:roundAsCircle="true" />
+        fresco:roundAsCircle="true"
+        fresco:placeholderImage="@mipmap/header_01"/>
 
     <TextView
         android:id="@+id/my_text_name"

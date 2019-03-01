@@ -118,11 +118,20 @@ public class HomeEntity {
                  * saleNum : 0
                  */
 
+                private boolean isChecked;
                 private int commodityId;
                 private String commodityName;
                 private String masterPic;
-                private int price;
+                private double price;
                 private int saleNum;
+
+                public boolean isChecked() {
+                    return isChecked;
+                }
+
+                public void setChecked(boolean checked) {
+                    isChecked = checked;
+                }
 
                 public int getCommodityId() {
                     return commodityId;
@@ -148,11 +157,11 @@ public class HomeEntity {
                     this.masterPic = masterPic;
                 }
 
-                public int getPrice() {
+                public double getPrice() {
                     return price;
                 }
 
-                public void setPrice(int price) {
+                public void setPrice(double price) {
                     this.price = price;
                 }
 
@@ -213,7 +222,7 @@ public class HomeEntity {
                 private int commodityId;
                 private String commodityName;
                 private String masterPic;
-                private int price;
+                private double price;
                 private int saleNum;
 
                 public int getCommodityId() {
@@ -240,11 +249,11 @@ public class HomeEntity {
                     this.masterPic = masterPic;
                 }
 
-                public int getPrice() {
+                public double getPrice() {
                     return price;
                 }
 
-                public void setPrice(int price) {
+                public void setPrice(double price) {
                     this.price = price;
                 }
 
@@ -305,7 +314,7 @@ public class HomeEntity {
                 private int commodityId;
                 private String commodityName;
                 private String masterPic;
-                private int price;
+                private double price;
                 private int saleNum;
 
                 public int getCommodityId() {
@@ -332,11 +341,11 @@ public class HomeEntity {
                     this.masterPic = masterPic;
                 }
 
-                public int getPrice() {
+                public double getPrice() {
                     return price;
                 }
 
-                public void setPrice(int price) {
+                public void setPrice(double price) {
                     this.price = price;
                 }
 

@@ -48,11 +48,11 @@ public class PzshAdapter extends RecyclerView.Adapter<PzshAdapter.ViewHolder> {
         Uri uri = Uri.parse(commodityListBeanX.getMasterPic());
         viewHolder.iv_pzsh_icon.setImageURI(uri);
         viewHolder.tv_pzsh_name.setText(commodityListBeanX.getCommodityName());
-        viewHolder.tv_pzsh_price.setText(commodityListBeanX.getPrice() + "");
+        viewHolder.tv_pzsh_price.setText("￥：" + commodityListBeanX.getPrice());
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EventBus.getDefault().post(commodityListBeanX.getCommodityId());
+                EventBus.getDefault().post(commodityListBeanX.getCommodityId() + "");
             }
         });
     }

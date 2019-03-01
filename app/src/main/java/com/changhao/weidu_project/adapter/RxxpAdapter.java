@@ -48,11 +48,11 @@ public class RxxpAdapter extends RecyclerView.Adapter<RxxpAdapter.ViewHolder> {
         Uri uri = Uri.parse(commodityListBean.getMasterPic());
         viewHolder.iv_rxxp_icon.setImageURI(uri);
         viewHolder.tv_rxxp_name.setText(commodityListBean.getCommodityName());
-        viewHolder.tv_rxxp_price.setText(commodityListBean.getPrice() + "");
+        viewHolder.tv_rxxp_price.setText("￥：" + commodityListBean.getPrice());
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EventBus.getDefault().post(commodityListBean.getCommodityId());
+                EventBus.getDefault().post(commodityListBean.getCommodityId() + "");
             }
         });
     }

@@ -7,8 +7,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -31,6 +30,8 @@ import com.changhao.weidu_project.R;
 import com.changhao.weidu_project.contract.IUpLoadHeaderContract;
 import com.changhao.weidu_project.entity.UpLoadHeaderEntity;
 import com.changhao.weidu_project.presenter.UpLoadHeaderpresenter;
+import com.changhao.weidu_project.ui.activity.UserDataActivity;
+import com.changhao.weidu_project.ui.activity.UserWalletActivity;
 import com.changhao.weidu_project.ui.base.BaseFragment;
 import com.changhao.weidu_project.utils.BitmapUtil;
 import com.changhao.weidu_project.utils.DensityUtil;
@@ -158,7 +159,7 @@ public class MineFragment extends BaseFragment implements IUpLoadHeaderContract.
     // 将修改后的图片保存在本地存储中：storage/sdcard/Android/data/应用包名/files/xxx.png
     private void saveImage(Bitmap bitmap) throws FileNotFoundException {
 
-        String path = this.getCacheDir() + "/tx.png";
+        String path = this.getCacheDir() + "com.changhao.weidu_project/cache" + "/tx.png";
         Log.e("TAG", "path = " + path);
         try {
             FileOutputStream fos = new FileOutputStream(path);
@@ -280,6 +281,22 @@ public class MineFragment extends BaseFragment implements IUpLoadHeaderContract.
         ButterKnife.bind(this, view);
         upLoadHeaderpresenter = new UpLoadHeaderpresenter(this);
 
+        my_text_personal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), UserDataActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        my_text_wallet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), UserWalletActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
     @Override
@@ -332,7 +349,7 @@ public class MineFragment extends BaseFragment implements IUpLoadHeaderContract.
             });
 
             // 设置背景图片， 必须设置，不然动画没作用
-            popupWindow.setBackgroundDrawable(new ColorDrawable(Color.BLACK));
+            popupWindow.setBackgroundDrawable(new BitmapDrawable());
             popupWindow.setFocusable(true);
 
             // 设置点击popupwindow外屏幕其它地方消失

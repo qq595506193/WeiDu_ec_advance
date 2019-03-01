@@ -66,6 +66,14 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toRightOf="@id/item_select_image" />
 
+            <com.changhao.weidu_project.widget.AddMinusView
+                android:id="@+id/add_minus"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@id/item_select_text_price"
+                app:layout_constraintRight_toRightOf="parent"
+                android:layout_marginRight="@dimen/dp_10"/>
+
         </android.support.constraint.ConstraintLayout>
 
     </LinearLayout>

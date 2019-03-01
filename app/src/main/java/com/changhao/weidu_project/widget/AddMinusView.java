@@ -14,7 +14,7 @@ import com.changhao.weidu_project.R;
 public class AddMinusView extends LinearLayout {
 
     private TextView tv_subtract, tv_plus;
-    private EditText ed_minus;
+    private TextView ed_minus;
     private int num = 1;
 
     public AddMinusView(Context context) {
@@ -36,7 +36,7 @@ public class AddMinusView extends LinearLayout {
 
         tv_subtract = view.findViewById(R.id.tv_subtract);
         tv_plus = view.findViewById(R.id.tv_plus);
-        ed_minus = view.findViewById(R.id.ed_minus);
+        ed_minus = view.findViewById(R.id.tv_minus);
         ed_minus.setText("1");
 
         tv_plus.setOnClickListener(new OnClickListener() {

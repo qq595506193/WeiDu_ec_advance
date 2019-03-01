@@ -1,6 +1,8 @@
 package com.changhao.weidu_project.ui.fragment;
 
 import android.content.Intent;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 import android.widget.ImageButton;
@@ -61,9 +63,15 @@ public class HomeFragment extends BaseFragment implements IHomeContract.IHomeVie
     }
 
     @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
     protected void initView(View view) {
         ButterKnife.bind(this, view);
-        EventBus.getDefault().register(this);
+
         homePresenter = new HomePresenter(this);
         bannerPresenter = new BannerPresenter(this);
         xrv_home.setLayoutManager(new LinearLayoutManager(getActivity()));
