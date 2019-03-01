@@ -39,18 +39,6 @@ public class CircleListEntity {
     }
 
     public static class ResultBean {
-        /**
-         * commodityId : 1
-         * content : 51545454545
-         * createTime : 1550780869000
-         * greatNum : 1
-         * headPic : http://172.17.8.100/images/small/default/user.jpg
-         * id : 522
-         * image : http://172.17.8.100/images/small/circle_pic/2019-02-21/1547920190221142749.jpg
-         * nickName : d5_38S30
-         * userId : 560
-         * whetherGreat : 2
-         */
 
         private int commodityId;
         private String content;
