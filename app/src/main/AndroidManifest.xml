@@ -33,7 +33,8 @@
         <activity android:name=".ui.activity.PzshActivity" />
         <activity android:name=".ui.activity.MlssActivity" />
         <activity android:name=".ui.activity.UserDataActivity" />
-        <activity android:name=".ui.activity.UserWalletActivity"></activity>
+        <activity android:name=".ui.activity.UserWalletActivity" />
+        <activity android:name=".ui.activity.MyCircleActivity"></activity>
     </application>
 
 </manifest>
