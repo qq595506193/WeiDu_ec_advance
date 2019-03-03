@@ -47,12 +47,30 @@ public class SearchShoppingEntity {
          * price : 189
          */
 
+        private boolean isCheck;
+        private int num;
         private int commodityId;
         private String commodityName;
         private int count;
         private String pic;
         private double price;
         private boolean isItemChecked;
+
+        public int getNum() {
+            return num;
+        }
+
+        public void setNum(int num) {
+            this.num = num;
+        }
+
+        public boolean isCheck() {
+            return isCheck;
+        }
+
+        public void setCheck(boolean check) {
+            isCheck = check;
+        }
 
         public boolean isItemChecked() {
             return isItemChecked;

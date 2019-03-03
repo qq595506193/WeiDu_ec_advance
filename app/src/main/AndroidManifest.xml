@@ -19,6 +19,7 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning"
         tools:replace="android:icon">
+        <activity android:name=".ui.activity.OrderActivity"></activity>
         <activity android:name=".ui.activity.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -34,7 +35,7 @@
         <activity android:name=".ui.activity.MlssActivity" />
         <activity android:name=".ui.activity.UserDataActivity" />
         <activity android:name=".ui.activity.UserWalletActivity" />
-        <activity android:name=".ui.activity.MyCircleActivity"></activity>
+        <activity android:name=".ui.activity.MyCircleActivity" />
     </application>
 
 </manifest>

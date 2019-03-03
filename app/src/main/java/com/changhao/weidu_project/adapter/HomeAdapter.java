@@ -17,6 +17,8 @@ import com.changhao.weidu_project.R;
 import com.changhao.weidu_project.callback.IGetItemIdCallback;
 import com.changhao.weidu_project.entity.BannerEntity;
 import com.changhao.weidu_project.entity.HomeEntity;
+import com.changhao.weidu_project.ui.activity.MlssActivity;
+import com.changhao.weidu_project.ui.activity.PzshActivity;
 import com.changhao.weidu_project.ui.activity.RxxpActivity;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.stx.xhb.xbanner.XBanner;
@@ -102,68 +104,95 @@ public class HomeAdapter extends XRecyclerView.Adapter<XRecyclerView.ViewHolder>
 
     @Override
     public void onBindViewHolder(@NonNull final XRecyclerView.ViewHolder viewHolder, final int i) {
-            if (getItemViewType(i) == RXXP_ITEM) {// 热销新品
+        if (getItemViewType(i) == RXXP_ITEM) {// 热销新品
 
-                rxxpViewHolder.tv_rxxp_title.setText(rxxpBeans.getName());
-                rxxpViewHolder.rxxp_rv.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
-                RxxpAdapter rxxpAdapter = new RxxpAdapter(context);
-                rxxpViewHolder.rxxp_rv.setAdapter(rxxpAdapter);
-                rxxpViewHolder.tv_rxxp_more.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent(context, RxxpActivity.class);
-                        intent.putExtra("categoryId", rxxpBeans.getId());
-                        context.startActivity(intent);
+            rxxpViewHolder.tv_rxxp_title.setText(rxxpBeans.getName());
+            rxxpViewHolder.rxxp_rv.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
+            RxxpAdapter rxxpAdapter = new RxxpAdapter(context);
+            rxxpViewHolder.rxxp_rv.setAdapter(rxxpAdapter);
+            rxxpViewHolder.tv_rxxp_more.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(context, RxxpActivity.class);
+                    intent.putExtra("categoryId", rxxpBeans.getId());
+                    context.startActivity(intent);
 
+                }
+            });
+
+            rxxpAdapter.setCommodityListBeans(rxxpBeans.getCommodityList());
+
+            viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (iGetItemIdCallback != null) {
+                        iGetItemIdCallback.getItemId(rxxpBeans.getCommodityList().get(i).getCommodityId() + "");
                     }
-                });
+                }
+            });
 
-                rxxpAdapter.setCommodityListBeans(rxxpBeans.getCommodityList());
+        } else if (getItemViewType(i) == PZSH_ITEM) {// 品质生活
+            pzshViewHolder.tv_pzsh_title.setText(pzshBeans.getName());
+            pzshViewHolder.pzsh_rv.setLayoutManager(new GridLayoutManager(context, 2));
+            PzshAdapter pzshAdapter = new PzshAdapter(context);
+            pzshViewHolder.pzsh_rv.setAdapter(pzshAdapter);
 
-            } else if (getItemViewType(i) == PZSH_ITEM) {// 品质生活
-                pzshViewHolder.tv_pzsh_title.setText(pzshBeans.getName());
-                pzshViewHolder.pzsh_rv.setLayoutManager(new GridLayoutManager(context, 2));
-                PzshAdapter pzshAdapter = new PzshAdapter(context);
-                pzshViewHolder.pzsh_rv.setAdapter(pzshAdapter);
+            pzshViewHolder.tv_pzsh_more.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(context, PzshActivity.class);
+                    intent.putExtra("categoryId", rxxpBeans.getId());
+                    context.startActivity(intent);
+                }
+            });
 
-                pzshAdapter.setCommodityListBeanXES(pzshBeans.getCommodityList());
+            pzshAdapter.setCommodityListBeanXES(pzshBeans.getCommodityList());
 
-                viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        if (iGetItemIdCallback != null) {
-                            iGetItemIdCallback.getItemId(pzshBeans.getCommodityList().get(i).getCommodityId() + "");
-                        }
+            viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (iGetItemIdCallback != null) {
+                        iGetItemIdCallback.getItemId(pzshBeans.getCommodityList().get(i).getCommodityId() + "");
                     }
-                });
-            } else if (getItemViewType(i) == MLSS_ITEM) {// 魔力时尚
-                mlssViewHolder.tv_mlss_title.setText(mlssBeans.getName());
-                mlssViewHolder.mlss_rv.setLayoutManager(new LinearLayoutManager(context));
-                MlssAdapter mlssAdapter = new MlssAdapter(context);
-                mlssViewHolder.mlss_rv.setAdapter(mlssAdapter);
+                }
+            });
+        } else if (getItemViewType(i) == MLSS_ITEM) {// 魔力时尚
+            mlssViewHolder.tv_mlss_title.setText(mlssBeans.getName());
+            mlssViewHolder.mlss_rv.setLayoutManager(new LinearLayoutManager(context));
+            MlssAdapter mlssAdapter = new MlssAdapter(context);
+            mlssViewHolder.mlss_rv.setAdapter(mlssAdapter);
 
-                mlssAdapter.setCommodityListBeanXXES(mlssBeans.getCommodityList());
+            mlssViewHolder.tv_mlss_more.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(context, MlssActivity.class);
+                    intent.putExtra("categoryId", rxxpBeans.getId());
+                    context.startActivity(intent);
+                }
+            });
 
-                viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        if (iGetItemIdCallback != null) {
-                            iGetItemIdCallback.getItemId(mlssBeans.getCommodityList().get(i).getCommodityId() + "");
-                        }
+            mlssAdapter.setCommodityListBeanXXES(mlssBeans.getCommodityList());
+
+            viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (iGetItemIdCallback != null) {
+                        iGetItemIdCallback.getItemId(mlssBeans.getCommodityList().get(i).getCommodityId() + "");
                     }
-                });
-            } else if (getItemViewType(i) == BANNER_ITEM) {// 轮播
-                final List<BannerEntity.ResultBean> result = bannerEntity.getResult();
-                bannerViewHolder.xBanner.setData(result, null);
-                bannerViewHolder.xBanner.setClipChildrenLeftRightMargin(20);
-                bannerViewHolder.xBanner.loadImage(new XBanner.XBannerAdapter() {
-                    @Override
-                    public void loadBanner(XBanner banner, Object model, View view, int position) {
-                        Glide.with(context).load(result.get(i).getImageUrl()).into((ImageView) view);
-                        bannerViewHolder.xBanner.setPageChangeDuration(1000);
-                    }
-                });
-            }
+                }
+            });
+        } else if (getItemViewType(i) == BANNER_ITEM) {// 轮播
+            final List<BannerEntity.ResultBean> result = bannerEntity.getResult();
+            bannerViewHolder.xBanner.setData(result, null);
+            bannerViewHolder.xBanner.setClipChildrenLeftRightMargin(20);
+            bannerViewHolder.xBanner.loadImage(new XBanner.XBannerAdapter() {
+                @Override
+                public void loadBanner(XBanner banner, Object model, View view, int position) {
+                    Glide.with(context).load(result.get(i).getImageUrl()).into((ImageView) view);
+                    bannerViewHolder.xBanner.setPageChangeDuration(1000);
+                }
+            });
+        }
 
 
     }
