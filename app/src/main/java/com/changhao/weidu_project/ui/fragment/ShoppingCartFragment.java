@@ -97,7 +97,7 @@ public class ShoppingCartFragment extends BaseFragment implements ISearchShoppin
                     }
 
                 }
-                EventBus.getDefault().register(list);
+                EventBus.getDefault().postSticky(list);
                 startActivity(new Intent(getActivity(), OrderActivity.class));
             }
         });
@@ -127,13 +127,14 @@ public class ShoppingCartFragment extends BaseFragment implements ISearchShoppin
     }
 
     private void zPrice() {
-        double total = 0;
+        //double total = 0;
         for (SearchShoppingEntity.ResultBean resultBean : resultBeans) {
             if (resultBean.isCheck()) {
-                total += resultBean.getPrice() * resultBean.getNum();
+                tv_totalPrice.setText(resultBean.getPrice() * resultBean.getNum() + "");
+            } else {
+                tv_totalPrice.setText("0.0");
             }
         }
-        tv_totalPrice.setText(total + "");
 
 
     }
@@ -155,6 +156,7 @@ public class ShoppingCartFragment extends BaseFragment implements ISearchShoppin
             searchShoppingAdapter.setResultBeans(this.resultBeans);
 
 
+            zPrice();
         }
     }
 

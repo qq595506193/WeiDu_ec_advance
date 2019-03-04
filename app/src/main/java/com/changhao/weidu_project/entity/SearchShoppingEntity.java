@@ -48,7 +48,7 @@ public class SearchShoppingEntity {
          */
 
         private boolean isCheck;
-        private int num;
+        private int num = 1;
         private int commodityId;
         private String commodityName;
         private int count;

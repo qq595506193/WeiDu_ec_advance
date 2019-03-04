@@ -30,6 +30,7 @@ import com.changhao.weidu_project.R;
 import com.changhao.weidu_project.contract.IUpLoadHeaderContract;
 import com.changhao.weidu_project.entity.UpLoadHeaderEntity;
 import com.changhao.weidu_project.presenter.UpLoadHeaderpresenter;
+import com.changhao.weidu_project.ui.activity.MyAddressActivity;
 import com.changhao.weidu_project.ui.activity.MyCircleActivity;
 import com.changhao.weidu_project.ui.activity.UserDataActivity;
 import com.changhao.weidu_project.ui.activity.UserWalletActivity;
@@ -303,6 +304,13 @@ public class MineFragment extends BaseFragment implements IUpLoadHeaderContract.
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), MyCircleActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        my_text_address.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().startActivity(new Intent(getActivity(), MyAddressActivity.class));
             }
         });
 
