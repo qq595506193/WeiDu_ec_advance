@@ -1,6 +1,7 @@
 package com.changhao.weidu_project.ui.activity;
 
 import android.support.v7.widget.LinearLayoutManager;
+import android.view.View;
 import android.widget.TextView;
 
 import com.changhao.weidu_project.R;
@@ -59,6 +60,14 @@ public class OrderActivity extends BaseActivity implements NotifyNum {
         });
 
         zPrice();
+
+
+        tv_commit_order.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
     }
 
     @Override
